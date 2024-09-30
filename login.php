@@ -1,21 +1,26 @@
 <?php
 header('Content-Type: application/json');
 
-if (!isset($_POST))
-{
-	$msg = "NO POST MESSAGE SET, POLITELY FUCK OFF";
-	echo json_encode($msg);
-	exit(0);
+// Check if the POST request is empty
+if (empty($_POST)) {
+    $response = ["message" => "No POST message set, politely fuck off"];
+    echo json_encode($response);
+    exit(0);
 }
+
 $request = $_POST;
-$response = "unsupported request type, politely FUCK OFF";
-switch ($request["type"])
-{
-	case "login":
-		$response = "login, yeah we can do that";
-	break;
+$response = ["message" => "Unsupported request type, politely FUCK OFF"]; // Use an associative array for the response
+
+// Check the type of request
+if (isset($request["type"])) {
+    switch ($request["type"]) {
+        case "login":
+            $response = ["message" => "Login, yeah we can do that"]; // Set the response as an associative array
+            break;
+    }
 }
+
+// Return the response as JSON
 echo json_encode($response);
 exit(0);
-
 ?>
