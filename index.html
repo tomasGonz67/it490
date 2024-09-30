@@ -89,8 +89,9 @@
 
     function HandleLoginResponse(response){
         console.log("wahh");
-        console.log(response);
-        console.log(response.text);
+        var res=JSON.parse(response);
+        console.log(res);
+        console.log(res.text);
         
     }
 </script>
