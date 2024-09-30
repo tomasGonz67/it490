@@ -72,6 +72,16 @@
 </div>
 
 <script>
+    
+    function HandleLoginResponse(response){
+        console.log("wahh");
+        var res=JSON.parse(response);
+        console.log(res);
+        console.log(res.text);
+        
+    }
+
+
     function login() {
         const uname = document.getElementById('username').value;
         const pname = document.getElementById('password').value;
@@ -87,13 +97,7 @@
         xhr.send("type=login&uname=" + uname+"&pword="+pname);
     }
 
-    function HandleLoginResponse(response){
-        console.log("wahh");
-        var res=JSON.parse(response);
-        console.log(res);
-        console.log(res.text);
-        
-    }
+
 </script>
 
 </body>
