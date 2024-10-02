@@ -7,18 +7,27 @@ require_once('rabbitMQLib.inc');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))
 {
-  $msg = $argv[1];
+  if (!isset($_POST)){
+	  $msg = "NO POST MESSAGE SET, POLITELY FUCK OFF";
+	  //echo json_encode($msg);
+	  exit(0);
+  }
 }
 else
 {
   $msg = "test message";
 }
 
-$request = array();
-$request['type'] = "Login";
-$request['username'] = "steve";
-$request['password'] = "password";
-$request['message'] = $msg;
+$request = $_POST;
+$response = "unsupported request type, politely FUCK OFF";
+switch ($request["type"])
+{
+	case "login":
+	  $request['type'] = "Login";
+    $request['message'] = $msg;
+	break;
+}
+
 $response = $client->send_request($request);
 //$response = $client->publish($request);
 
