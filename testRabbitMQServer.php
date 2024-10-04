@@ -16,7 +16,9 @@ function requestProcessor($username,$password)
 {
   $request = [
     'username' => $username,
-    'password' => $password
+    'password' => $password,
+    'type' =>$login,
+    'sessionId'="four"
 ];
 
   echo "received request".PHP_EOL;
