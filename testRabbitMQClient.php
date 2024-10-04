@@ -6,8 +6,14 @@ require_once('rabbitMQLib.inc');
 
 function sendToRabbit($uname, $pword){
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-$creds = [$uname,$pword];
-$response = $client->send_request($creds);
+$request = [
+    'username' => $uname,
+    'password' => $pword,
+    'type' =>'login',
+    'sessionId'="four"
+];
+
+$response = $client->send_request($request);
 //$response = $client->publish($request);
 
 echo "client received response: ".PHP_EOL;

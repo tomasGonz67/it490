@@ -12,15 +12,8 @@ function doLogin($username,$password)
     //return false if not valid
 }
 
-function requestProcessor($username,$password)
+function requestProcessor($request)
 {
-  $request = [
-    'username' => $username,
-    'password' => $password,
-    'type' =>$login,
-    'sessionId'="four"
-];
-
   echo "received request".PHP_EOL;
   var_dump($request);
   if(!isset($request['type']))
