@@ -13,7 +13,7 @@ switch ($request["type"])
 {
 	case "login":
 	require 'testRabbitMQClient.php';
-	sendToRabbit($request["uname"], $request["pname"]);
+	sendToRabbit($request["uname"], $request["pword"]);
 	$response="good!";
 	echo json_encode($response);
 	break;
