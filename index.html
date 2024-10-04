@@ -89,7 +89,7 @@
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                    //HandleLoginResponse(this.responseText);
+                    HandleLoginResponse(this.responseText);
                     console.log("good")
             }
         };
