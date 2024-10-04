@@ -10,7 +10,7 @@ $request = [
     'username' => $uname,
     'password' => $pword,
     'type' =>'login',
-    'sessionId'="four"
+    'sessionId'=>"four"
 ];
 
 $response = $client->send_request($request);
