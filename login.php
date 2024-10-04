@@ -12,10 +12,13 @@ $response = "unsupported request type, politely FUCK OFF";
 switch ($request["type"])
 {
 	case "login":
-		$response = "login, yeah we can do that";
+	require 'testRabbitMQClient.php';
+	sendToRabbit($request["uname"], $request["pname"]);
+	$response="good!";
+	echo json_encode($response);
 	break;
+	exit(0);
 }
 echo json_encode($response);
-exit(0);
 
 ?>
