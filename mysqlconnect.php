@@ -11,9 +11,11 @@ if ($mydb->errno != 0)
 
 echo "successfully connected to database".PHP_EOL;
 
-$query = "select * from students;";
+$query = "select * from users;";
 
 $response = $mydb->query($query);
+
+echo ($response);
 if ($mydb->errno != 0)
 {
 	echo "failed to execute query:".PHP_EOL;
