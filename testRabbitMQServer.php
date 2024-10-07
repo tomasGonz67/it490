@@ -33,9 +33,9 @@ function requestProcessor($request)
     case "validate_session":
       return doValidate($request['sessionId']);
     case "success":
-      return doLoggedin($reequest['message']);
+      return doLoggedin($request['message']);
     case "failed":
-      return doLoggedin($reequest['message'])
+      return doLoggedin($request['message'])
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
