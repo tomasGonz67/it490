@@ -29,7 +29,7 @@ function checkLogin($username, $password){
 			}
 			
 		}
-		$request =['type' => 'failed', 'message' => 'Login FAILED']
+		$request =['type' => 'failed', 'message' => 'Login FAILED'];
 		$response = $client->send_request($request);
 		exit(0);
 	}
