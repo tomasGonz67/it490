@@ -15,6 +15,9 @@ switch ($request["type"])
 	sendToRabbit($request["uname"], $request["pword"]);
 	exit(0);
 	break;
+
+	default:
+	break;
 }
 
 function finishLogin($message){
