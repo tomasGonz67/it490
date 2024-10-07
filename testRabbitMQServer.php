@@ -15,7 +15,6 @@ function doLogin($username,$password)
 function doLoggedin($message){
   require 'login.php';
   finishLogin($message);
-  echo "yay";
   return true;
 }
 
@@ -34,6 +33,7 @@ function requestProcessor($request)
     case "validate_session":
       return doValidate($request['sessionId']);
     case "success":
+      echo "yay";
       return doLoggedin($request['message']);
     case "failed":
       return doLoggedin($request['message']);
