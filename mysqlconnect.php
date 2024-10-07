@@ -15,7 +15,12 @@ $query = "select * from users;";
 
 $response = $mydb->query($query);
 
-echo ($response);
+if ($response){
+	while ($row=$response->fetch_assoc()){
+		echo ($row['username'] . " " . $row['password']);
+	}
+}
+
 if ($mydb->errno != 0)
 {
 	echo "failed to execute query:".PHP_EOL;
