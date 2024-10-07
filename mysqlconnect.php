@@ -4,7 +4,11 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+
+
+
+function checkLogin($username, $password){
+	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 if ($mydb->errno != 0)
@@ -13,10 +17,8 @@ if ($mydb->errno != 0)
 	exit(0);
 }
 
-echo "successfully connected to database".PHP_EOL;
 
-function checkLogin($username, $password){
-	global $mydb;
+
 	$query = "select * from users;";
 
 	$response = $mydb->query($query);
@@ -34,15 +36,17 @@ function checkLogin($username, $password){
 		$response = $client->send_request($request);
 		exit(0);
 	}
-}
 
-
-if ($mydb->errno != 0)
+	if ($mydb->errno != 0)
 {
 	echo "failed to execute query:".PHP_EOL;
 	echo __FILE__.':'.__LINE__.":error: ".$mydb->error.PHP_EOL;
 	exit(0);
 }
+}
+
+
+
 
 
 ?>
