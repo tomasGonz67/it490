@@ -21,6 +21,7 @@ if($_POST){
 
 
 function finishLogin($message){
+	header('Content-Type: application/json');
 	echo json_encode($message);
 	exit(0);
 }
