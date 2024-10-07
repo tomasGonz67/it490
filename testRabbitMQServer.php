@@ -35,7 +35,7 @@ function requestProcessor($request)
     case "success":
       return doLoggedin($request['message']);
     case "failed":
-      return doLoggedin($request['message'])
+      return doLoggedin($request['message']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
