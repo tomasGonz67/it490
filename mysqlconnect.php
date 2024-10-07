@@ -15,7 +15,7 @@ if ($mydb->errno != 0)
 
 echo "successfully connected to database".PHP_EOL;
 
-CheckLogin($username, $password){
+function checkLogin($username, $password){
 	$query = "select * from users;";
 
 	$response = $mydb->query($query);
