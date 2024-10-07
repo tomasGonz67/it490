@@ -15,6 +15,7 @@ function doLogin($username,$password)
 function doLoggedin($message){
   require 'login.php';
   finishLogin($message);
+  echo "yay";
   return true;
 }
 
