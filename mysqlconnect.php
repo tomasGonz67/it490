@@ -23,7 +23,7 @@ function checkLogin($username, $password){
 	if ($response){
 		while ($row=$response->fetch_assoc()){
 			if ($username==$row['username'] && $password==$row['password']){
-				$request =['type' => 'success', 'message' => 'Login successful']
+				$request =['type' => 'success', 'message' => 'Login successful'];
 				$response = $client->send_request($request);
 				exit(0);
 			}
