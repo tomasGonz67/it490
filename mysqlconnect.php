@@ -1,5 +1,8 @@
 #!/usr/bin/php
 <?php
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
 $mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 
@@ -11,15 +14,26 @@ if ($mydb->errno != 0)
 
 echo "successfully connected to database".PHP_EOL;
 
-$query = "select * from users;";
+CheckLogin($username, $password){
+	$query = "select * from users;";
 
-$response = $mydb->query($query);
-
-if ($response){
-	while ($row=$response->fetch_assoc()){
-		echo ($row['username'] . " " . $row['password']);
+	$response = $mydb->query($query);
+	
+	if ($response){
+		while ($row=$response->fetch_assoc()){
+			if ($username==$row['username'] && $password==$row['password']){
+				$request =['type' => 'success', 'message' => 'Login successful']
+				$response = $client->send_request($request);
+				exit(0);
+			}
+			
+		}
+		$request =['type' => 'failed', 'message' => 'Login FAILED']
+		$response = $client->send_request($request);
+		exit(0);
 	}
 }
+
 
 if ($mydb->errno != 0)
 {

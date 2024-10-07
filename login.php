@@ -15,10 +15,13 @@ switch ($request["type"])
 	require 'testRabbitMQClient.php';
 	sendToRabbit($request["uname"], $request["pword"]);
 	$response="good!";
-	echo json_encode($response);
 	break;
+}
+
+function finishLogin($message){
+	echo json_encode($message);
 	exit(0);
 }
-echo json_encode($response);
+
 
 ?>
