@@ -8,7 +8,7 @@ require_once('rabbitMQLib.inc');
 
 
 function checkLogin($username, $password){
-	return ("test");
+
 	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
