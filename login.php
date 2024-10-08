@@ -23,7 +23,14 @@ switch ($request["type"])
 	];
 	
 	$response = $client->send_request($request);
-	echo json_encode($response);
+	if ($response){
+		echo json_encode($response);
+	}
+	else{
+		$response="fuck me";
+		echo json_encode($response);
+	}
+	
 	break;
 }
 
