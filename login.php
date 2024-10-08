@@ -24,9 +24,9 @@ switch ($request["type"])
 		$response = $client->send_request($request);
 		$reponse="kill me";
 		return json_encode($response);
-		exit(0);
+
 	break;
 }
 
-
+exit(0);
 ?>
