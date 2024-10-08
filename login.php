@@ -21,10 +21,10 @@ switch ($request["type"])
 		'type' =>'login',
 		'sessionId'=>"four"
 	];
+	
+	$response = $client->send_request($request);
 	echo json_encode($response);
 	break;
-	$response = $client->send_request($request);
-
 }
 
 exit(0);
