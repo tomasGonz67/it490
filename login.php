@@ -16,8 +16,8 @@ switch ($request["type"])
 	case "login":
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$request = [
-			'username' => $uname,
-			'password' => $pword,
+			'username' => $request['uname'],
+			'password' => $request['pword'],
 			'type' =>'login',
 			'sessionId'=>"four"
 		];
