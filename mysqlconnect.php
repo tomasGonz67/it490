@@ -27,7 +27,8 @@ if ($mydb->errno != 0)
 	if ($response){
 		while ($row=$response->fetch_assoc()){
 			if ($username==$row['username'] && $password==$row['password']){
-				return 'Login successful';
+				$response='Login successful';
+				return json_encode($response);
 				exit(0);
 			}
 			
