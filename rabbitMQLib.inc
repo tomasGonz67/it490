@@ -212,7 +212,7 @@ class rabbitMQClient
 
       $callback_queue = new AMQPQueue($channel);
       $callback_queue->setName($this->queue."_response");
-      $callback_queue->declare();
+      $callback_queue->declareQueue();
 			$callback_queue->bind($exchange->getName(),$this->routing_key.".response");
 
 			$this->conn_queue = new AMQPQueue($channel);
@@ -223,9 +223,6 @@ class rabbitMQClient
       $this->response_queue[$uid] = "waiting";
 			$callback_queue->consume(array($this,'process_response'));
 
-			while ($this->response_queue[$uid] === "waiting") {
-    			$channel->wait();
-			}
 			$response = $this->response_queue[$uid];
 			unset($this->response_queue[$uid]);
 			return $response;
