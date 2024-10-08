@@ -223,6 +223,9 @@ class rabbitMQClient
       $this->response_queue[$uid] = "waiting";
 			$callback_queue->consume(array($this,'process_response'));
 
+			while ($this->response_queue[$uid] === "waiting") {
+    			$channel->wait();
+			}
 			$response = $this->response_queue[$uid];
 			unset($this->response_queue[$uid]);
 			return $response;
