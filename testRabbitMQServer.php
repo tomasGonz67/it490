@@ -6,8 +6,7 @@ require_once('rabbitMQLib.inc');
 
 function doLogin($username,$password)
 {
-    require_once 'mysqlconnect.php';
-    return checkLogin($username, $password);
+
     //return false if not valid
 }
 
@@ -23,7 +22,8 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
-      return doLogin($request['username'],$request['password']);
+      require_once 'mysqlconnect.php';
+      return checkLogin($request['username'],$request['password']);
     case "validate_session":
       return doValidate($request['sessionId']);
   }
