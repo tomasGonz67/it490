@@ -221,10 +221,8 @@ class rabbitMQClient
 
 			$exchange->publish($json_message,$this->routing_key,AMQP_NOPARAM,array('reply_to'=>$callback_queue->getName(),'correlation_id'=>$uid));
       $this->response_queue[$uid] = "waiting";
-			$callback_queue->basic_consume(array($this,'process_response'));
-			while ($channel->is_consuming()) {
-    			$channel->wait();
-			}
+			$callback_queue->consume(array($this,'process_response'));
+
 			$response = $this->response_queue[$uid];
 			unset($this->response_queue[$uid]);
 			return $response;
