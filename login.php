@@ -21,16 +21,9 @@ switch ($request["type"])
 		'sessionId'=>"four"
 	];
 	
-	try {
-		$response = $client->send_request($request);
-		if ($response) {
-			echo json_encode($response);
-		} else {
-			echo json_encode("No response from RabbitMQ");
-		}
-	} catch (Exception $e) {
-		echo json_encode("Error: " . $e->getMessage());
-	}
+	
+	$response = $client->send_request($request);
+	echo json_encode($response);
 	break;
 }
 
