@@ -1,4 +1,7 @@
 <?php
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
 if (!isset($_POST))
 {
@@ -6,24 +9,21 @@ if (!isset($_POST))
 	echo json_encode($msg);
 	exit(0);
 }
-if($_POST){
-	$request = $_POST;
-	$response = "unsupported request type, politely FUCK OFF";
-	switch ($request["type"])
-	{
-		case "login":
-		require 'testRabbitMQClient.php';
-		sendToRabbit($request["uname"], $request["pword"]);
-		exit(0);
-		break;
-	}
-}
-
-
-function finishLogin($message){
-	header('Content-Type: application/json');
-	echo json_encode($message);
-	exit(0);
+$request = $_POST;
+$response = "unsupported request type, politely FUCK OFF";
+switch ($request["type"])
+{
+	case "login":
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$request = [
+			'username' => $uname,
+			'password' => $pword,
+			'type' =>'login',
+			'sessionId'=>"four"
+		];
+		$response = $client->send_request($request);
+		return json_encode($response);
+	break;
 }
 
 

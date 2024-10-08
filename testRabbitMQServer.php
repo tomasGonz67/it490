@@ -7,16 +7,10 @@ require_once('rabbitMQLib.inc');
 function doLogin($username,$password)
 {
     require 'mysqlconnect.php';
-	  checkLogin($username, $password);
-    return true;
+    return checkLogin($username, $password);
     //return false if not valid
 }
 
-function doLoggedin($message){
-  require 'login.php';
-  finishLogin($message);
-  return true;
-}
 
 function requestProcessor($request)
 {
@@ -32,11 +26,6 @@ function requestProcessor($request)
       return doLogin($request['username'],$request['password']);
     case "validate_session":
       return doValidate($request['sessionId']);
-    case "success":
-      echo "yay";
-      return doLoggedin($request['message']);
-    case "failed":
-      return doLoggedin($request['message']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
