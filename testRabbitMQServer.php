@@ -7,7 +7,7 @@ require_once('rabbitMQLib.inc');
 function doLogin($username,$password)
 {
     require_once 'mysqlconnect.php';
-    echo checkLogin($username, $password);
+    return checkLogin($username, $password);
     //return false if not valid
 }
 
