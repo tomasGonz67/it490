@@ -22,7 +22,7 @@ switch ($request["type"])
 			'sessionId'=>"four"
 		];
 		$response = $client->send_request($request);
-		echo json_encode(var_dump($response));
+		echo json_encode("asda");
 		
 		break;
 }
