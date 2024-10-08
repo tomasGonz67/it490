@@ -27,6 +27,7 @@ if ($mydb->errno != 0)
 	if ($response){
 		while ($row=$response->fetch_assoc()){
 			if ($username==$row['username'] && $password==$row['password']){
+				echo 'Login good';
 				return 'Login successful';
 				exit(0);
 			}
