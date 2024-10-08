@@ -201,7 +201,7 @@ class rabbitMQClient
       $params['password'] = $this->PASSWORD;
       $params['vhost'] = $this->VHOST;
 
-			$conn = new AMQPConnection($params);
+			$conn = new AMQPStreamConnection($params);
 			$conn->connect();
 
 			$channel = new AMQPChannel($conn);
