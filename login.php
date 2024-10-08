@@ -22,7 +22,7 @@ switch ($request["type"])
 			'sessionId'=>"four"
 		];
 		$response = $client->send_request($request);
-		return json_encode($response);
+		return "test";
 	break;
 }
 
