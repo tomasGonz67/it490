@@ -21,8 +21,9 @@ switch ($request["type"])
 			'type' =>'login',
 			'sessionId'=>"four"
 		];
-		$response = $client->send_request($request);
 		echo json_encode("asda");
+		$response = $client->send_request($request);
+		
 		
 		break;
 }
