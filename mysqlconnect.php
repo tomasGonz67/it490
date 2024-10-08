@@ -26,12 +26,12 @@ if ($mydb->errno != 0)
 	if ($response){
 		while ($row=$response->fetch_assoc()){
 			if ($username==$row['username'] && $password==$row['password']){
-				return ['type' => 'success', 'message' => 'Login successful'];
+				return 'Login successful';
 				exit(0);
 			}
 			
 		}
-		return ['type' => 'failed', 'message' => 'Login FAILED'];
+		return 'Login FAILED';
 		exit(0);
 	}
 
