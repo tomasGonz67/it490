@@ -21,9 +21,9 @@ switch ($request["type"])
 			'type' =>'login',
 			'sessionId'=>"four"
 		];
-		$reponse="kill me";
+		$response = $client->send_request($request);
 		echo json_encode($response);
-		//$response = $client->send_request($request);
+		
 		break;
 }
 
