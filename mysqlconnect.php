@@ -6,6 +6,26 @@ require_once('rabbitMQLib.inc');
 
 
 
+function register($username, $password){
+	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	if ($mydb->errno != 0)
+	{
+		echo "failed to connect to database: ". $mydb->error . PHP_EOL;
+		exit(0);
+	}
+
+	$query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+	$response = $mydb->query($query);
+	if ($response){
+		return "user in db";
+	}
+	else{
+		return "error" . $mydb->error;
+	}
+
+}
 
 function checkLogin($username, $password){
 

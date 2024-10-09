@@ -24,6 +24,11 @@ function requestProcessor($request)
     case "login":
       require_once 'mysqlconnect.php';
       return checkLogin($request['username'],$request['password']);
+
+    case "register":
+      require_once 'mysqlconnect.php';
+      return register($request['username'],$request['password']);
+
     case "validate_session":
       return doValidate($request['sessionId']);
   }

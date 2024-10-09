@@ -12,6 +12,7 @@ $request = $_POST;
 $response = "unsupported request type, politely FUCK OFF";
 switch ($request["type"])
 {
+	
 	case "login":
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$request = [
@@ -20,11 +21,19 @@ switch ($request["type"])
 		'type' =>'login',
 		'sessionId'=>"four"
 	];
-	
-	
 	$response = $client->send_request($request);
 	echo json_encode($response);
 	break;
+
+	case "register":
+		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+		$request = [
+			'username' => $request['uname'],
+			'password' => $request['pword'],
+			'type' =>'register',
+		];
+		$response = $client->send_request($request);
+		echo json_encode($response);
 }
 
 exit(0);
