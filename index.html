@@ -74,11 +74,11 @@
 <div class="registration-container">
     <h2>Register</h2>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="usernameReg" name="username" required>
 
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="passwordReg" name="password" required>
 
         <button onclick="register()">Register</button>
         <div id="registerResponse"></div>
@@ -114,8 +114,8 @@
     }
 
     function register() {
-        const uname = document.getElementById('username').value;
-        const pname = document.getElementById('password').value;
+        const uname = document.getElementById('usernameReg').value;
+        const pname = document.getElementById('passwordReg').value;
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "login.php", true);
