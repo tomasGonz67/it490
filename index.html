@@ -93,12 +93,14 @@
     function HandleLoginResponse(response){
         var res =JSON.parse(response);
         document.getElementById("textResponse").innerHTML=res;
+        console.log(res);
         
     }
 
     function HandleRegistrationResponse(response){
         var res =JSON.parse(response);
         document.getElementById("registerResponse").innerHTML=res;
+        console.log(res);
     }
 
 

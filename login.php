@@ -34,6 +34,7 @@ switch ($request["type"])
 		];
 		$response = $client->send_request($request);
 		echo json_encode($response);
+		break;
 }
 
 exit(0);
