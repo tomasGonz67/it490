@@ -15,14 +15,18 @@ function register($username, $password){
 		exit(0);
 	}
 
-	$query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-
-	$response = $mydb->query($query);
-	if ($response){
-		return "user in db";
-	}
-	else{
-		return "error" . $mydb->error;
+	try {
+		$query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+		
+		$response = $mydb->query($query);
+		
+		if ($response) {
+			return "User added to database";
+		} else {
+			throw new Exception("Database error: " . $mydb->error);
+		}
+	} catch (Exception $e) {
+		return "Error: " . $e->getMessage();
 	}
 
 }
