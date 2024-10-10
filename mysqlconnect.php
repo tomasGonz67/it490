@@ -6,7 +6,37 @@ require_once('rabbitMQLib.inc');
 
 
 
+<<<<<<< HEAD
 
+=======
+function register($username, $password){
+	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	if ($mydb->errno != 0)
+	{
+		echo "failed to connect to database: ". $mydb->error . PHP_EOL;
+		exit(0);
+	}
+
+	try {
+		$query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+		
+		$response = $mydb->query($query);
+		
+		if ($response) {
+			echo "User added";
+			return "User added to database";
+		} else {
+			echo "user not added";
+			throw new Exception("Database error: " . $mydb->error);
+		}
+	} catch (Exception $e) {
+		echo "Error: " . $e->getMessage();
+		return "Error: " . $e->getMessage();
+	}
+
+}
+>>>>>>> parent of b31d2f5 (changing)
 
 function checkLogin($username, $password){
 
