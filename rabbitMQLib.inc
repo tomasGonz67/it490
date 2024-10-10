@@ -188,7 +188,7 @@ class rabbitMQClient
 			$payload = "[empty response]";
 		}
 		$this->response_queue[$uid] = $payload;
-		return false;
+		return true;
 	}
 
 	function send_request($message)
