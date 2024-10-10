@@ -37,7 +37,7 @@ function register($username, $password){
 function logout($sess){
 	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-	echo($sess);
+	echo("log".$sess);
 	$query = "UPDATE users SET session_key = NULL WHERE session_key = '$sess'";
 	$response = $mydb->query($query);
 
