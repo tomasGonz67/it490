@@ -75,6 +75,7 @@
     <div id="textResponse"></div>
 </div>
 
+<<<<<<< HEAD
 <div class="registration-container">
     <h2>Register</h2>
         <label for="username">Username:</label>
@@ -88,6 +89,8 @@
         <div id="registerResponse"></div>
 </div>
 
+=======
+>>>>>>> parent of 0c10a4d (testing registration part 1...)
 <script>
 
     function HandleLoginResponse(response){
@@ -98,12 +101,15 @@
         
     }
 
+<<<<<<< HEAD
     function HandleRegistrationResponse(response){
         var res =JSON.parse(response);
         document.getElementById("registerResponse").innerHTML=res;
         console.log(res);
     }
 
+=======
+>>>>>>> parent of 0c10a4d (testing registration part 1...)
 
     function login() {
         const uname = document.getElementById('username').value;
@@ -115,11 +121,13 @@
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                     HandleLoginResponse(this.responseText);
+                    console.log("good")
             }
         };
         xhr.send("type=login&uname=" + uname+"&pword="+pname);
     }
 
+<<<<<<< HEAD
     function register() {
         const uname = document.getElementById('usernameReg').value;
         const pname = document.getElementById('passwordReg').value;
@@ -135,6 +143,8 @@
         xhr.send("type=register&uname=" + uname+"&pword="+pname);
     }
 
+=======
+>>>>>>> parent of 0c10a4d (testing registration part 1...)
 
 </script>
 

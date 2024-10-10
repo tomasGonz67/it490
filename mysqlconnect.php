@@ -6,6 +6,7 @@ require_once('rabbitMQLib.inc');
 
 
 
+<<<<<<< HEAD
 function register($username, $password){
 	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
@@ -33,6 +34,8 @@ function register($username, $password){
 	}
 
 }
+=======
+>>>>>>> parent of 0c10a4d (testing registration part 1...)
 
 function checkLogin($username, $password){
 
