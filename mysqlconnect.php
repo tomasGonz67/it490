@@ -28,6 +28,7 @@ function register($username, $password){
 			throw new Exception("Database error: " . $mydb->error);
 		}
 	} catch (Exception $e) {
+		echo "user not added!";
 		return "Error: " . $e->getMessage();
 	}
 

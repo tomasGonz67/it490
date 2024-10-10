@@ -91,6 +91,7 @@
 <script>
 
     function HandleLoginResponse(response){
+        console.log(response);
         var res =JSON.parse(response);
         document.getElementById("textResponse").innerHTML=res;
         console.log(res);
