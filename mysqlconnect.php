@@ -42,7 +42,7 @@ function logout($sess){
 	$response = $mydb->query($query);
 
 	if ($response){
-		return "user logged out";
+		return "user logged out $sess";
 	}
 	else {
 		return "error";
