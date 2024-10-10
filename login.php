@@ -22,7 +22,7 @@ switch ($request["type"])
 		'sessionId'=>"four"
 	];
 	$response = $client->send_request($request);
-	echo json_encode($response);
+	return json_encode($response);
 	break;
 
 	case "register":
