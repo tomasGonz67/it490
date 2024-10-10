@@ -34,6 +34,17 @@ switch ($request["type"])
 		$response = $client->send_request($request);
 		echo json_encode($response);
 		break;
+
+	case "logout":
+		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+		$request = [
+			'type' =>'logout',
+			'session'=>$request['sess']
+		];
+		$response = $client->send_request($request);
+		echo json_encode($response);
+		break;
+
 }
 
 exit(0);

@@ -21,6 +21,9 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "logout":
+      require_once 'mysqlconnect.php';
+      return logout($request['session']);
     case "login":
       $id=uniqid();
       $hash = md5($id);
