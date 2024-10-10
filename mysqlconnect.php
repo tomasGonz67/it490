@@ -41,7 +41,7 @@ function logout($sess){
 	$response = $mydb->query($query);
 
 	if ($response){
-		return $hash;
+		return "user logged out";
 	}
 	else {
 		return "error";

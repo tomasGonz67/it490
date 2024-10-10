@@ -99,12 +99,18 @@ function logout() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                    HandleLoginResponse(this.responseText);
+                    HandleLogoutResponse(this.responseText);
             }
         };
         xhr.send("type=logout&sess="+sess);
 
         }
+
+        function HandleLogoutResponse(response){
+            var res =JSON.parse(response);
+            document.getElementById("textResponse").innerHTML=res;
+        
+    }
 
     function HandleLoginResponse(response){
         var res =JSON.parse(response);
