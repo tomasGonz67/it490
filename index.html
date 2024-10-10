@@ -91,17 +91,15 @@
 <script>
 
     function HandleLoginResponse(response){
-        console.log(response);
         var res =JSON.parse(response);
         document.getElementById("textResponse").innerHTML=res;
-        console.log(res);
+        localStorage.setItem('session_key', response);
         
     }
 
     function HandleRegistrationResponse(response){
         var res =JSON.parse(response);
         document.getElementById("registerResponse").innerHTML=res;
-        console.log(res);
     }
 
 
