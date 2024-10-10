@@ -32,8 +32,7 @@ switch ($request["type"])
 			'password' => $request['pword'],
 			'type' =>'register',
 		];
-		$response="you suck";
-		//$response = $client->send_request($request);
+		$response = $client->send_request($request);
 		echo json_encode($response);
 		break;
 }
