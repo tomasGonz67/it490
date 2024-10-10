@@ -22,9 +22,8 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
-      return "pls";
       require_once 'mysqlconnect.php';
-      //return checkLogin($request['username'],$request['password']);
+      return checkLogin($request['username'],$request['password']);
 
     case "register":
       require_once 'mysqlconnect.php';
