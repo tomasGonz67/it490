@@ -18,6 +18,7 @@ switch ($request["type"])
 	$request = [
 		'username' => $request['uname'],
 		'password' => $request['pword'],
+		'sess' => $request['sess'],
 		'type' =>'login',
 	];
 	$response = $client->send_request($request);
