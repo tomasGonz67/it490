@@ -93,7 +93,7 @@
 
 function logout() {
     var sess=localStorage.getItem('session_key');
-            localStorage.removeItem('session_key');
+    console.log(sess);
             var xhr = new XMLHttpRequest();
         xhr.open("POST", "login.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -107,6 +107,7 @@ function logout() {
         }
 
         function HandleLogoutResponse(response){
+            localStorage.removeItem('session_key');
             var res =JSON.parse(response);
             document.getElementById("textResponse").innerHTML=res;
         
