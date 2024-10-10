@@ -25,20 +25,6 @@ switch ($request["type"])
 	$response = $client->send_request($request);
 	echo json_encode($response);
 	break;
-<<<<<<< HEAD
-
-	case "register":
-		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-		$request = [
-			'username' => $request['uname'],
-			'password' => $request['pword'],
-			'type' =>'register',
-		];
-		$response = $client->send_request($request);
-		echo json_encode($response);
-		break;
-=======
->>>>>>> parent of 0c10a4d (testing registration part 1...)
 }
 
 exit(0);

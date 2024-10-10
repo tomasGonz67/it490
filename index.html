@@ -75,22 +75,6 @@
     <div id="textResponse"></div>
 </div>
 
-<<<<<<< HEAD
-<div class="registration-container">
-    <h2>Register</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="usernameReg" name="username" required>
-
-
-        <label for="password">Password:</label>
-        <input type="password" id="passwordReg" name="password" required>
-
-        <button onclick="register()">Register</button>
-        <div id="registerResponse"></div>
-</div>
-
-=======
->>>>>>> parent of 0c10a4d (testing registration part 1...)
 <script>
 
     function HandleLoginResponse(response){
@@ -101,15 +85,7 @@
         
     }
 
-<<<<<<< HEAD
-    function HandleRegistrationResponse(response){
-        var res =JSON.parse(response);
-        document.getElementById("registerResponse").innerHTML=res;
-        console.log(res);
-    }
 
-=======
->>>>>>> parent of 0c10a4d (testing registration part 1...)
 
     function login() {
         const uname = document.getElementById('username').value;
@@ -127,24 +103,7 @@
         xhr.send("type=login&uname=" + uname+"&pword="+pname);
     }
 
-<<<<<<< HEAD
-    function register() {
-        const uname = document.getElementById('usernameReg').value;
-        const pname = document.getElementById('passwordReg').value;
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "login.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                    HandleRegistrationResponse(this.responseText);
-            }
-        };
-        xhr.send("type=register&uname=" + uname+"&pword="+pname);
-    }
-
-=======
->>>>>>> parent of 0c10a4d (testing registration part 1...)
 
 </script>
 
