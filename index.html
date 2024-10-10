@@ -92,7 +92,7 @@
 <script>
 
 function logout() {
-    var sess=localStorage.getItem('session_key');
+    const sess=localStorage.getItem('session_key');
     console.log(sess);
             var xhr = new XMLHttpRequest();
         xhr.open("POST", "login.php", true);
