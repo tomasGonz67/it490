@@ -19,7 +19,6 @@ switch ($request["type"])
 		'username' => $request['uname'],
 		'password' => $request['pword'],
 		'type' =>'login',
-		'sessionId'=>"four"
 	];
 	$response = $client->send_request($request);
 	echo json_encode($response);

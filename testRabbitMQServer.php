@@ -22,8 +22,10 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
+      $id=uniqid();
+      $hash = md5($id);
       require_once 'mysqlconnect.php';
-      return checkLogin($request['username'],$request['password']);
+      return checkLogin($request['username'],$request['password'], $hash);
 
     case "register":
       require_once 'mysqlconnect.php';

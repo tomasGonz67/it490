@@ -34,7 +34,21 @@ function register($username, $password){
 
 }
 
-function checkLogin($username, $password){
+function setHash($username, $hash){
+	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$query = "UPDATE users SET session_key = '$hash' WHERE username = '$username'";
+	$response = $mydb->query($query);
+
+	if ($response){
+		return $hash;
+	}
+	else {
+		return "error";
+	}
+}
+
+function checkLogin($username, $password, $hash){
 
 	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
@@ -54,8 +68,7 @@ if ($mydb->errno != 0)
 	if ($response){
 		while ($row=$response->fetch_assoc()){
 			if ($username==$row['username'] && $password==$row['password']){
-				echo 'Login good';
-				return 'Login successful';
+				return setHash($username, $hash);
 				exit(0);
 			}
 			
