@@ -24,7 +24,7 @@ function register($username, $password){
 			echo "User added";
 			return "User added to database";
 		} else {
-			echo "user not added"
+			echo "user not added";
 			throw new Exception("Database error: " . $mydb->error);
 		}
 	} catch (Exception $e) {
