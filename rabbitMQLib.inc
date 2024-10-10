@@ -77,7 +77,7 @@ class rabbitMQServer
 				$conn_queue->bind($exchange->getName(),$replykey);
 				$exchange->publish(json_encode($response),$replykey,AMQP_NOPARAM,array('correlation_id'=>$msg->getCorrelationId()));
 
-				return true;
+				return;
 			}
 		}
 		catch(Exception $e)
