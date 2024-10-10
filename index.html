@@ -75,8 +75,6 @@
     <div id="textResponse"></div>
 </div>
 
-<<<<<<< HEAD
-=======
 <div class="registration-container">
     <h2>Register</h2>
         <label for="username">Username:</label>
@@ -90,7 +88,6 @@
         <div id="registerResponse"></div>
 </div>
 
->>>>>>> parent of b31d2f5 (changing)
 <script>
 
     function HandleLoginResponse(response){
@@ -101,14 +98,11 @@
         
     }
 
-<<<<<<< HEAD
-=======
     function HandleRegistrationResponse(response){
         var res =JSON.parse(response);
         document.getElementById("registerResponse").innerHTML=res;
         console.log(res);
     }
->>>>>>> parent of b31d2f5 (changing)
 
 
     function login() {
@@ -126,9 +120,6 @@
         xhr.send("type=login&uname=" + uname+"&pword="+pname);
     }
 
-<<<<<<< HEAD
-
-=======
     function register() {
         const uname = document.getElementById('usernameReg').value;
         const pname = document.getElementById('passwordReg').value;
@@ -144,7 +135,6 @@
         xhr.send("type=register&uname=" + uname+"&pword="+pname);
     }
 
->>>>>>> parent of b31d2f5 (changing)
 
 </script>
 

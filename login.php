@@ -24,8 +24,6 @@ switch ($request["type"])
 	$response = $client->send_request($request);
 	echo json_encode($response);
 	break;
-<<<<<<< HEAD
-=======
 
 	case "register":
 		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
@@ -37,7 +35,6 @@ switch ($request["type"])
 		$response = $client->send_request($request);
 		echo json_encode($response);
 		break;
->>>>>>> parent of b31d2f5 (changing)
 }
 
 exit(0);
