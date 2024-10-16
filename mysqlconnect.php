@@ -7,7 +7,7 @@ require_once('rabbitMQLib.inc');
 
 
 function register($username, $password){
-	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
