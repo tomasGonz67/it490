@@ -7,7 +7,7 @@ require_once('rabbitMQLib.inc');
 
 
 function register($username, $password){
-	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
@@ -35,7 +35,7 @@ function register($username, $password){
 }
 
 function logout($sess){
-	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$sessionOne = str_replace(['"', "'"], '', $sess);
 
@@ -53,7 +53,7 @@ function logout($sess){
 }
 
 function setHash($username, $hash){
-	$mydb = new mysqli('127.0.0.1','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$query = "UPDATE users SET session_key = '$hash' WHERE username = '$username'";
 	$response = $mydb->query($query);
