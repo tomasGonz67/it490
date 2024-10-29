@@ -121,8 +121,7 @@ function handleShowPredictions(response){
     var res =JSON.parse(response);
     const fighters = document.getElementById('fighter-predictions');
     var newFighters=res.map(fighter=>{
-        const prediction=((fighter.n_win*3) - (fighter.n_loss) + (fighter.n_tie));
-        console.log(fighter.name+":"+prediction);
+        const prediction=(Number(fighter.n_win*3) - Number(fighter.n_loss) + Number(fighter.n_tie));
         return {
             ...fighter, 
             fighterPrediction: prediction
