@@ -37,9 +37,9 @@ function getFighters(){
 			$fightersArray = json_decode($response, true);
 			$fighters=[];
 			foreach ($fightersArray as $fighter){
+				echo("working");
 				$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
-				VALUES ('{$fighter['fighter_id']}', '{$fighter['name']}', '{$fighter['height']}', 
-				'{$fighter['weight']}', {$fighter['n_win']}, {$fighter['n_loss']}, {$fighter['n_draw']})";
+				VALUES ('asda', 'name', 'height', 'weight', 3, 4, 2)";
 				$result = $mydb->query($query);
 
 				if (!$result) {
