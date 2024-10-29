@@ -39,12 +39,12 @@ function getFighters(){
 			var_dump($fightersArray);
 			$fighters=[];
 			foreach ($fightersArray as $fighter) {
-				$fighter_id = $fighter['fighter_id'];
-				$name = $fighter['name'];
-				$height =$fighter['height'];
-				$weight = $fighter['weight'];
-				$n_win = $fighter['n_win'];
-				$n_loss = $fighter['n_loss'];
+				$fighter_id = $mydb->real_escape_string($fighter['fighter_id']);
+				$name = $mydb->real_escape_string($fighter['name']);
+				$height = $mydb->real_escape_string($fighter['height']);
+				$weight = $mydb->real_escape_string($fighter['weight']);
+				$n_win = $fighter['n_win']; 
+				$n_loss = $fighter['n_loss']; 
 				$n_draw = $fighter['n_draw'];
 			
 				$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
