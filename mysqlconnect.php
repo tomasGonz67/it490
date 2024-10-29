@@ -3,11 +3,57 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
+//172.24.37.96
+function getFighters(){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	if ($mydb->errno != 0)
+	{
+		echo "failed to connect to database: ". $mydb->error . PHP_EOL;
+		exit(0);
+	}
 
+	$query = "select * from fighters;";
+	$response = $mydb->query($query);
+	
+	if ($response){
 
+		if ($response->num_rows > 0){
+			$fighters =[];
+			while($row = $result->fetch_assoc()) {
+				$fighters[] = $row;
+			}
+			return $fighters;
+		}
+
+		else{
+			$curl = curl_init();
+
+			curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+			$response = curl_exec($curl);
+			curl_close($curl);
+			$fightersArray = json_decode($response, true);
+			
+			foreach ($fightersArray as $fighter){
+				$query ="INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) VALUES ($fighter['fighter_id'], $fighter['name'],$fighter['height'],$fighter['weight'],$fighter['n_win'],$fighter['n_loss'],$fighter['n_draw'] )";
+				$response = $mydb->query($query);
+			}
+			$query = "select * from fighters;";
+			$response = $mydb->query($query);
+			while($row = $result->fetch_assoc()) {
+				$fighters[] = $row;
+			}
+			return $fighters;
+		}
+			
+	}
+
+}
 
 function register($username, $password){
-	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
@@ -35,7 +81,7 @@ function register($username, $password){
 }
 
 function logout($sess){
-	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$sessionOne = str_replace(['"', "'"], '', $sess);
 
@@ -53,7 +99,7 @@ function logout($sess){
 }
 
 function setHash($username, $hash){
-	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$query = "UPDATE users SET session_key = '$hash' WHERE username = '$username'";
 	$response = $mydb->query($query);
@@ -68,7 +114,7 @@ function setHash($username, $hash){
 
 function checkLogin($username, $password, $hash){
 
-	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 if ($mydb->errno != 0)

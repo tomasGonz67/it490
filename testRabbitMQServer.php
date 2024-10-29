@@ -21,6 +21,9 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "getFighters":
+      require_once 'mysqlconnect.php';
+      return getFighters();
     case "logout":
       require_once 'mysqlconnect.php';
       return logout($request['session']);

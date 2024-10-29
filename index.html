@@ -87,9 +87,32 @@
 
         <button onclick="register()">Register</button>
         <div id="registerResponse"></div>
+
+        <div id="fighter-container">
+            <button onclick="showFighters()">Show Fighter Stats</button>
+            <h1>Fighter Stats</h1>
+            <div id="fighter-info">
+                <!-- Fighter stats will be dynamically injected here -->
+        </div>
 </div>
 
+
 <script>
+
+function showFighters(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "login.php?type=getFighters", true);
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                    handleShowFighters(this.responseText);
+            }
+        };
+        xhr.send();
+}
+
+function handleShowFighters(response){
+    console.log(response);
+}
 
 function logout() {
     const sess=localStorage.getItem('session_key');
