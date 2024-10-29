@@ -38,8 +38,7 @@ function getFighters(){
 			$fighters=[];
 			foreach ($fightersArray as $fighter){
 				$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
-				VALUES ('{$fighter['fighter_id']}', '{$fighter['name']}', '{$fighter['height']}', 
-				'{$fighter['weight']}', {$fighter['n_win']}, {$fighter['n_loss']}, {$fighter['n_draw']})";
+				VALUES ('john', 'asda', 'fa', 'a', 3, 2, 1)";
 				$result = $mydb->query($query);
 
 				if (!$result) {
