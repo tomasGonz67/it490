@@ -41,6 +41,10 @@ function getFighters(){
 				VALUES ('{$fighter['fighter_id']}', '{$fighter['name']}', '{$fighter['height']}', 
 				'{$fighter['weight']}', {$fighter['n_win']}, {$fighter['n_loss']}, {$fighter['n_draw']})";
 				$result = $mydb->query($query);
+
+				if (!$result) {
+					echo "Error inserting fighter: " . $mydb->error; 
+				}
 			}
 			$query = "select * from fighters;";
 			$result = $mydb->query($query);
