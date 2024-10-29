@@ -61,6 +61,7 @@ function getFighters(){
 			while($row = $result->fetch_assoc()) {
 				$fighters[] = $row;
 			}
+			var_dump($fighters);
 			return $fighters;
 		}
 			
