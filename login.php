@@ -2,7 +2,19 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-if (!isset($_POST))
+
+
+if (isset($_GET['type']) && $_GET['type'] == 'getFighters') {
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$request = [
+		'type' =>'getFighters'
+	];
+	$response = $client->send_request($request);
+	echo json_encode($response);
+}
+
+
+if (!isset($_POST) || !isset($_GET))
 {
 	$msg = "NO POST MESSAGE SET, POLITELY FUCK OFF";
 	echo json_encode($msg);
@@ -12,15 +24,6 @@ $request = $_POST;
 $response = "unsupported request type, politely FUCK OFF";
 switch ($request["type"])
 {
-	case "getFighters":
-		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-		$request = [
-			'type' =>'getFighters'
-		];
-		$response = $client->send_request($request);
-		echo json_encode($response);
-		break;
-	
 	case "login":
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$request = [
