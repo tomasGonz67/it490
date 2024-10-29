@@ -131,8 +131,8 @@ function handleShowPredictions(response){
     newFighters.map((fighter,index)=>{
         const predictionElement = document.createElement('div');
         predictionElement.innerHTML = `
-        <h3>${fighter.name}:${fighter.index}</h3>
-        <h3>${fighter.prediction}</h3>
+        <h3>${fighter.name}:${index}</h3>
+        <h3>${fighter.fighterPrediction}</h3>
     `;
     fighters.appendChild(predictionElement);
     })
