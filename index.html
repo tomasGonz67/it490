@@ -122,12 +122,15 @@ function handleShowPredictions(response){
     const fighters = document.getElementById('fighter-predictions');
     var newFighters=res.map(fighter=>{
         const prediction=((fighter.n_win*3) - (fighter.n_loss) + (fighter.n_tie));
+        console.log(fighter.name+":"+prediction);
         return {
             ...fighter, 
             fighterPrediction: prediction
         };
     });
     newFighters.sort((a, b) => b.fighterPrediction - a.fighterPrediction);
+
+    
     newFighters.map((fighter,index)=>{
         const predictionElement = document.createElement('div');
         predictionElement.innerHTML = `
