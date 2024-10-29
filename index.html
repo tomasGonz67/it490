@@ -112,7 +112,7 @@ function showFighters(){
 
 function handleShowFighters(response){
     var res =JSON.parse(response);
-    console.log(response);
+    document.getElementById("fighter-info").innerHTML=res;
 }
 
 function logout() {
