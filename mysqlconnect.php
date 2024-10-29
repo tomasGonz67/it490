@@ -33,12 +33,10 @@ function getFighters(){
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 			$response = curl_exec($curl);
-			if ($response === false) {
-				echo "cURL Error: " . curl_error($curl);
-				return; // Exit if there’s an error with the API call
-			}
 			curl_close($curl);
 			$fightersArray = json_decode($response, true);
+			echo('TEST');
+			echo($fightersArray);
 			$fighters=[];
 			foreach ($fightersArray as $fighter) {
 				$fighter_id = $fighter['fighter_id'];
