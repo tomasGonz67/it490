@@ -112,7 +112,20 @@ function showFighters(){
 
 function handleShowFighters(response){
     var res =JSON.parse(response);
-    document.getElementById("fighter-info").innerHTML=res;
+    const fighters = document.getElementById('fighter-info');
+    res.map(fighter=>{
+        const fighterElement = document.createElement('div');
+        fighterElement.innerHTML = `
+        <h3>${fighter.name}</h3>
+        <p>ID: ${fighter.fighter_id}</p>
+        <p>Height: ${fighter.height}</p>
+        <p>Weight: ${fighter.weight}</p>
+        <p>Wins: ${fighter.n_win}</p>
+        <p>Losses: ${fighter.n_loss}</p>
+        <p>Draws: ${fighter.n_draw}</p>
+    `;
+    fighters.appendChild(fighterElement);
+    });
 }
 
 function logout() {
