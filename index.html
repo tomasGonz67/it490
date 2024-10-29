@@ -130,7 +130,7 @@ function handleShowPredictions(response){
     newFighters.sort((a, b) => b.fighterPrediction - a.fighterPrediction);
     newFighters.map((fighter,index)=>{
         const predictionElement = document.createElement('div');
-        predictionsElement.innerHTML = `
+        predictionElement.innerHTML = `
         <h3>${fighter.name}:${fighter.index}</h3>
         <h3>${fighter.prediction}</h3>
     `;
