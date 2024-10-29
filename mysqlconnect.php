@@ -36,14 +36,22 @@ function getFighters(){
 			curl_close($curl);
 			$fightersArray = json_decode($response, true);
 			$fighters=[];
-			foreach ($fightersArray as $fighter){
-				echo("working");
+			foreach ($fightersArray as $fighter) {
+				$fighter_id = $mydb->real_escape_string($fighter['fighter_id']);
+				$name = $mydb->real_escape_string($fighter['name']);
+				$height = $mydb->real_escape_string($fighter['height']);
+				$weight = $mydb->real_escape_string($fighter['weight']);
+				$n_win = (int)$fighter['n_win'];
+				$n_loss = (int)$fighter['n_loss'];
+				$n_draw = (int)$fighter['n_draw'];
+			
 				$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
-				VALUES ('asda', 'name', 'height', 'weight', 3, 4, 2)";
+						  VALUES ('$fighter_id', '$name', '$height', '$weight', $n_win, $n_loss, $n_draw)";
+			
 				$result = $mydb->query($query);
-
+			
 				if (!$result) {
-					echo "Error inserting fighter: " . $mydb->error; 
+					echo "Error inserting fighter: " . $mydb->error;
 				}
 			}
 			$query = "select * from fighters;";
