@@ -36,7 +36,7 @@ function getFighters(){
 			curl_close($curl);
 			$fightersArray = json_decode($response, true);
 			echo('TEST');
-			echo($fightersArray);
+			var_dump($fightersArray);
 			$fighters=[];
 			foreach ($fightersArray as $fighter) {
 				$fighter_id = $fighter['fighter_id'];
