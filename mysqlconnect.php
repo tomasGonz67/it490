@@ -14,13 +14,10 @@ function getMessage($name, $message){
 		$response = $mydb->query($query);
 		
 		if ($response) {
-			echo "User added";
-			return "User added to database";
+			return "Message Recieved!";
 		} else {
-			echo "user not added";
 			throw new Exception("Database error: " . $mydb->error);
 		}} catch (Exception $e) {
-			echo "Error: " . $e->getMessage();
 		return "Error: " . $e->getMessage();
 	}	
 }
