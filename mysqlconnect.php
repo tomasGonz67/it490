@@ -4,6 +4,8 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //172.24.37.96
+
+
 function getFighters(){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");

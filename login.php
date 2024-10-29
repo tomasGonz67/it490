@@ -4,13 +4,17 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 
-if (isset($_GET['type']) && $_GET['type'] == 'getFighters') {
-	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-	$request = [
-		'type' =>'getFighters'
-	];
-	$response = $client->send_request($request);
-	echo json_encode($response);
+if (isset($_GET['type'])) {
+    switch ($_GET['type']) {
+        case 'getFighters':
+            $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+            $request = [
+                'type' => 'getFighters'
+            ];
+            $response = $client->send_request($request);
+            echo json_encode($response);
+            break;
+    }
 }
 
 

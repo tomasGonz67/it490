@@ -92,12 +92,57 @@
             <button onclick="showFighters()">Show Fighter Stats</button>
             <h1>Fighter Stats</h1>
             <div id="fighter-info">
-                <!-- Fighter stats will be dynamically injected here -->
+                
+        </div>
+
+        <div id="predictions-container">
+            <button onclick="showPredictions()">Show Fighter Predictions</button>
+            <h1>Fighter predictions</h1>
+            <div id="fighter-predictions">
+                
         </div>
 </div>
 
 
 <script>
+
+function showPredictions(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "login.php?type=getFighters", true);
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                    handleShowPredictions(this.responseText);
+            }
+        };
+        xhr.send();
+}
+
+function handleShowPredictions(response){
+    var res =JSON.parse(response);
+    const fighters = document.getElementById('fighter-predictions');
+    var newFighters=res.map(fighter=>{
+        const prediction=((fighter.n_win*3) - (fighter.n_loss) + (fighter.n.tie));
+        return {
+            ...fighter, 
+            fighterPrediction: prediction
+        };
+    });
+    newFighters.sort((a, b) => b.fighterPrediction - a.fighterPrediction);
+    newFighters.map((fighter,index)=>{
+        const predictionElement = document.createElement('div');
+        predictionsElement.innerHTML = `
+        <h3>${fighter.name}:${fighter.index}</h3>
+        <h3>${fighter.prediction}</h3>
+    `;
+    fighters.appendChild(predictionElement);
+    })
+
+}
+
+
+
+
+
 
 function showFighters(){
     var xhr = new XMLHttpRequest();
