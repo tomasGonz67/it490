@@ -9,15 +9,20 @@ require_once('rabbitMQLib.inc');
 function getMessage($name, $message){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-	$query = "INSERT INTO userMessages (name, message) VALUES ($name,$message)";
-	$response = $mydb->query($query);
-
-	if ($response){
-		return "message recieved";
-	}
-	else {
-		return "error";
-	}
+	try{
+		$query = "INSERT INTO userMessages (name, message) VALUES ('$name','$message')";
+		$response = $mydb->query($query);
+		
+		if ($response) {
+			echo "User added";
+			return "User added to database";
+		} else {
+			echo "user not added";
+			throw new Exception("Database error: " . $mydb->error);
+		}} catch (Exception $e) {
+			echo "Error: " . $e->getMessage();
+		return "Error: " . $e->getMessage();
+	}	
 }
 
 function getFighters(){
