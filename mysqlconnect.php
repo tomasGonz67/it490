@@ -31,22 +31,28 @@ function getFighters(){
 
 			curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
+			
 			$response = curl_exec($curl);
 			curl_close($curl);
 			$fightersArray = json_decode($response, true);
 			
-			foreach ($fightersArray as $fighter){
+			foreach ($fightersArray as $fighter) {
 				$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
-				VALUES ('{$fighter['fighter_id']}', '{$fighter['name']}', '{$fighter['height']}', 
-				'{$fighter['weight']}', {$fighter['n_win']}, {$fighter['n_loss']}, {$fighter['n_draw']})";
-				$response = $mydb->query($query);
+						  VALUES ('{$fighter['fighter_id']}', '{$fighter['name']}', '{$fighter['height']}', 
+						  '{$fighter['weight']}', {$fighter['n_win']}, {$fighter['n_loss']}, {$fighter['n_draw']})";
+				
+				if (!$mydb->query($query)) {
+					echo "Error: " . $mydb->error;
+				}
 			}
-			$query = "select * from fighters;";
+			
+			$query = "SELECT * FROM fighters;";
 			$response = $mydb->query($query);
-			while($row = $result->fetch_assoc()) {
+			$fighters = [];
+			while ($row = $response->fetch_assoc()) {
 				$fighters[] = $row;
 			}
+			
 			return $fighters;
 		}
 			
