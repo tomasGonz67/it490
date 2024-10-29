@@ -6,6 +6,20 @@ require_once('rabbitMQLib.inc');
 //172.24.37.96
 
 
+function getMessage($name, $message){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$query = "INSERT INTO userMessages (name, message) VALUES ($name,$message)";
+	$response = $mydb->query($query);
+
+	if ($response){
+		return "message recieved";
+	}
+	else {
+		return "error";
+	}
+}
+
 function getFighters(){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
