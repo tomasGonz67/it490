@@ -20,7 +20,7 @@ function getFighters(){
 
 		if ($response->num_rows > 0){
 			$fighters =[];
-			while($row = $result->fetch_assoc()) {
+			while($row = $response->fetch_assoc()) {
 				$fighters[] = $row;
 			}
 			return $fighters;
