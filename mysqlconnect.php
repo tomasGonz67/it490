@@ -10,7 +10,10 @@ function joinLeague($userName, $password, $leagueName){
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$leagueName=$leagueName . " League";
 	try{
-		$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName','$leagueName')";
+		$query = "SELECT COUNT(*) FROM leagues WHERE league_name = '$leagueName'";
+		$response = $mydb->query($query);
+
+		$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName','$leagueName', ($response+1))";
 		$response = $mydb->query($query);
 		
 		if ($response) {
@@ -39,7 +42,7 @@ function createLeague($sess){
 			$userName = $row['username'];
 			$leagueName=$userName . " League";
 			try{
-			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
+			$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName', '$leagueName', 1)";
 			$result = $mydb->query($query);
 			if ($result){
 				$query = "SELECT id FROM leagues WHERE user_name = '$userName'";
