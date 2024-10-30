@@ -17,7 +17,7 @@ function createLeague($sess){
 	$response = $mydb->query($query);
 	$row = $response->fetch_assoc(); 
 	$userName=$row['username'];
-	echo $row";
+	echo $row;
     $leagueName = $userName . " League";
 	$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
 		
