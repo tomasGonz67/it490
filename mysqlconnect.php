@@ -9,6 +9,19 @@ function joinLeague($userName, $password, $leagueName){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$leagueName=$leagueName . " League";
+	$query = "SELECT inDraft FROM leagues WHERE league_name = '$leagueName'";
+	$response = $mydb->query($query);
+	if ($response) {
+		$row = $response->fetch_assoc();
+	
+		if ($row) {
+			$inDraft = $row['inDraft'];
+			if ($inDraft!=null){
+				return "CAN NOT JOIN LEAGUE THAT HAS STARTED";
+			}
+		}
+	}
+
 	try{
 		$query = "SELECT COUNT(*) FROM leagues WHERE league_name = '$leagueName'";
 		$response = $mydb->query($query);
