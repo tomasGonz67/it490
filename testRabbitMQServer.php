@@ -21,6 +21,9 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "joinLeague":
+      require_once 'mysqlconnect.php';
+      return joinLeague($request['username'], $request['password'], $request['id']);
     case "createLeague":
       require_once 'mysqlconnect.php';
       return createLeague($request['session']);

@@ -28,6 +28,19 @@ $request = $_POST;
 $response = "unsupported request type, politely FUCK OFF";
 switch ($request["type"])
 {
+
+	case "joinLeague":
+		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+		$request = [
+			'username' => $request['uname'],
+			'password' => $request['pword'],
+			'id'=> $request['id'],
+			'type' =>'joinLeague'
+		];
+		$response = $client->send_request($request);
+		echo json_encode($response);
+		break;
+
 	case "createLeague":
 		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 		$request = [

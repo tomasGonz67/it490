@@ -27,6 +27,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>Login</h2>
@@ -38,20 +39,39 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="pword" required>
         </div>
-        <button onclick="login()">Login</button>
+        <button onclick="joinLeague()">Login</button>
         <div class="error-message" id="error-message">Invalid credentials</div>
         <div id="textResponse"></div>
 
     </div>
     <script>
+
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
+        function handleJoinLeague(){
+            var res = JSON.parse(response);
+            console.log(res);
+        }
+
 
         const id = getQueryParam('id');
+        function joinLeague() {
+            const uname = document.getElementById('username').value;
+            const pname = document.getElementById('password').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "login.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    handleJoinLeague(this.responseText);
+                }
+            }
+            xhr.send("type=joinLeague&uname=" + uname+"&pword="+pname+"&id=" + id);
+        }
         console.log("League ID:", id);
     </script>
 </body>

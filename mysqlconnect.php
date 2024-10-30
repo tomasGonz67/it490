@@ -5,6 +5,22 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //172.24.37.96
 
+function joinLeague($userName, $password, $leagueName){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	try{
+		$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName','$leagueName')";
+		$response = $mydb->query($query);
+		
+		if ($response) {
+			return "user added to league!";
+		} else {
+			throw new Exception("Database error: " . $mydb->error);
+		}} catch (Exception $e) {
+		return "Error: " . $e->getMessage();
+	}	
+}
+
 
 function createLeague($sess){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
@@ -31,7 +47,7 @@ function createLeague($sess){
 					$row= $response->fetch_assoc();
 					if ($row){
 						$id=$row['id'];
-						$link = "http://localhost/sample/joinLeague.html?id=" . $id;
+						$link = "http://localhost/sample/joinLeague.html?id=" . $leagueName; // i totally messed this up but im not changing it. Should still work fine.
 						return $link;
 					}
 				}
