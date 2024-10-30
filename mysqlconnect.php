@@ -206,9 +206,10 @@ function joinLeague($userName, $password, $leagueName, $email){
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$to = $email;
 	$subject = "Someone Joined your League!";
+	$message = "<html><body>";
 	$message = "<h1>Hello!</h1><p>Check out your league! someone joined!.</p>";
-	$headers = "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$message .= "</body></html>";
+
 	$leagueName=$leagueName . " League";
 	$query = "SELECT inDraft FROM leagues WHERE league_name = '$leagueName'";
 	$response = $mydb->query($query);
