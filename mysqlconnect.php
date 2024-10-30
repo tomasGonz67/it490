@@ -254,6 +254,22 @@ function createLeague($sess){
 			$email=$row['email'];
 		}
 	}
+	$to = $mail;
+$subject = "Someone Joined your League!";
+$message = "<html><body>";
+$message .= "<h1>Hello!</h1>";
+$message .= "<p>Check out your league! Someone joined!</p>";
+$message .= "<p>Join link: <a href='$link'>Join League</a></p>"; 
+$message .= "</body></html>";
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+if (mail($to, $subject, $message, $headers)) {
+    echo "Email sent successfully!";
+} else {
+    echo "Failed to send email.";
+}
+
 
 	$query = "SELECT username FROM users WHERE session_key = '$session'";
 	$response = $mydb->query($query);
@@ -273,7 +289,7 @@ function createLeague($sess){
 					$row= $response->fetch_assoc();
 					if ($row){
 						$id=$row['id'];
-						$link = "http://localhost/sample/joinLeague.html?id=" . $userName . "&email=" . $email; // i totally messed this up but im not changing it. Should still work fine.
+						$link = "http://localhost/sample/joinLeague.html?id=" . $userName; // i totally messed this up but im not changing it. Should still work fine.
 						return $link;
 					}
 				}
