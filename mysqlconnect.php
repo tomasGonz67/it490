@@ -15,10 +15,11 @@ function createLeague($sess){
 
 	$query = "SELECT username FROM users WHERE session_key = '$sess'";
 	$response = $mydb->query($query);
-	$row = $response->fetch_assoc();
-	echo $row;
-	$username = $row['username'];
-	echo $username;
+	while($row = $response->fetch_assoc()) {
+		$name = $row;
+		echo $name . "hi";
+	}
+	echo $name . "by";
     //$leagueName = $userName . " League";
 	$query = "INSERT INTO leagues (user_name, league_name) VALUES ('lark', 'bark')";
 		
