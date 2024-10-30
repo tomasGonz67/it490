@@ -87,6 +87,9 @@
         <label for="password">Password:</label>
         <input type="password" id="passwordReg" name="password" required>
 
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
         <button onclick="register()">Register</button>
         <div id="registerResponse"></div>
 
@@ -133,6 +136,7 @@
     function register() {
         const uname = document.getElementById('usernameReg').value;
         const pname = document.getElementById('passwordReg').value;
+        const email = document.getElementById('email').value;
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "login.php", true);
@@ -142,7 +146,7 @@
                     HandleRegistrationResponse(this.responseText);
             }
         };
-        xhr.send("type=register&uname=" + uname+"&pword="+pname);
+        xhr.send("type=register&uname=" + uname+"&pword="+pname+"&email="+email);
     }
 
 

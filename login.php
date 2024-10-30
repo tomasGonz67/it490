@@ -89,6 +89,7 @@ switch ($request["type"])
 		$request = [
 			'username' => $request['uname'],
 			'password' => $request['pword'],
+			'email' => $request['email'],
 			'type' =>'register',
 		];
 		$response = $client->send_request($request);

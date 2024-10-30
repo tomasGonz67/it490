@@ -362,7 +362,7 @@ function getFighters(){
 
 }
 
-function register($username, $password){
+function register($username, $password, $email){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
@@ -372,7 +372,7 @@ function register($username, $password){
 	}
 
 	try {
-		$query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+		$query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', $email)";
 		
 		$response = $mydb->query($query);
 		
