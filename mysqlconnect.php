@@ -8,6 +8,7 @@ require_once('rabbitMQLib.inc');
 function joinLeague($userName, $password, $leagueName){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$leagueName=$leagueName . " League";
 	try{
 		$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName','$leagueName')";
 		$response = $mydb->query($query);
