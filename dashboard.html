@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #fighter-predictions {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #fighter-info {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="fighter-container"><button onclick="showFighters()">Show Fighter Stats</button>
+        <h1>Fighter Stats</h1>
+        <div id="fighter-info"></div>
+    </div>
+    <div id="predictions-container"><button onclick="showPredictions()">Show Fighter Predictions</button>
+        <h1>Fighter predictions</h1>
+        <div id="fighter-predictions"></div>
+    </div>
+    <div id="contact-form"><input type="text" id='name' name="name" placeholder="Your name" required><textarea
+            id="message" name="message" placeholder="Type your message" required></textarea><button
+            onclick="submit()">Send</button></div>
+    <div id="messages-container"></div>
+
+</body>
+
+<script>
+    function HandleSubmit(response) {
+        var res = JSON.parse(response);
+        document.getElementById("messages-container").innerHTML = res;
+    }
+
+    function submit() {
+        const message = document.getElementById('message').value;
+        const name = document.getElementById('name').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                HandleSubmit(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send("type=sendMessage&name=" + name + "&message=" + message);
+    }
+
+    function showPredictions() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "login.php?type=getFighters", true);
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                handleShowPredictions(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send();
+    }
+
+    function handleShowPredictions(response) {
+        var res = JSON.parse(response);
+        const fighters = document.getElementById('fighter-predictions');
+
+        var newFighters = res.map(fighter => {
+            const prediction = (Number(fighter.n_win || 0 * 3) - Number(fighter.n_loss || 0) + Number(fighter.n_tie || 0));
+
+            return {
+                ...fighter,
+                fighterPrediction: prediction
+            }
+
+                ;
+        });
+        newFighters.sort((a, b) => b.fighterPrediction - a.fighterPrediction);
+
+        newFighters.map((fighter, index) => {
+            const predictionElement = document.createElement('div');
+
+            predictionElement.innerHTML = ` <h3>$ {
+        fighter.name
+        }
+
+        Ranking:$ {
+        index + 1
+        }
+
+    </h3>
+    <h3>Prediction Score: $ {
+        fighter.fighterPrediction
+        }
+
+    </h3> `;
+            fighters.appendChild(predictionElement);
+        });
+    }
+
+    function showFighters() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "login.php?type=getFighters", true);
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                handleShowFighters(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send();
+    }
+
+    function handleShowFighters(response) {
+        var res = JSON.parse(response);
+        const fighters = document.getElementById('fighter-info');
+
+        res.map(fighter => {
+            const fighterElement = document.createElement('div');
+
+            fighterElement.innerHTML = ` <h3>$ {
+        fighter.name
+        }
+
+    </h3>
+    <p>ID: $ {
+        fighter.fighter_id
+        }
+
+    </p>
+    <p>Height: $ {
+        fighter.height
+        }
+
+    </p>
+    <p>Weight: $ {
+        fighter.weight
+        }
+
+    </p>
+    <p>Wins: $ {
+        fighter.n_win
+        }
+
+    </p>
+    <p>Losses: $ {
+        fighter.n_loss
+        }
+
+    </p>
+    <p>Draws: $ {
+        fighter.n_draw
+        }
+
+    </p> `;
+            fighters.appendChild(fighterElement);
+        });
+    }
+
+    function logout() {
+        const sess = localStorage.getItem('session_key');
+        console.log(sess);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                HandleLogoutResponse(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send("type=logout&sess=" + sess);
+    }
+
+    function HandleLogoutResponse(response) {
+        localStorage.removeItem('session_key');
+        var res = JSON.parse(response);
+        document.getElementById("textResponse").innerHTML = res;
+    }
+</script>
