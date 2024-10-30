@@ -157,7 +157,7 @@ function addFighter($sess, $name){
 											return "IT IS NOT YOUR TURN TO PICK YET!";
 										}
 										else{
-											$query = "UPDATE leagues SET fighter1 = '$name' WHERE user_name ='$userName'";
+											$query = "UPDATE leagues SET benched = '$name' WHERE user_name ='$userName'";
 											$response = $mydb->query($query);
 											if ($response){
 												$query = "SELECT COUNT(*) AS total_count FROM leagues WHERE league_name = '$leagueName'";
