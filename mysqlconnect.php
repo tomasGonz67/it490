@@ -18,23 +18,19 @@ function createLeague($sess){
 	if ($response) {
 		$row = $response->fetch_assoc();
 	
-		if ($row) {
+		try{($row) 
 			$userName = $row['username'];
 			$leagueName=$userName . " League";
 			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
 			$result = $mydb->query($query);
 			return "link";
+		}catch{
+			return "Error: " . $mydb->error;
 		}
-
 	} 
 	else {
-		// Handle query error
 		echo "Error: " . $mydb->error;
 	}
-    //$leagueName = $userName . " League";
-	
-		
-	
 }
 
 
