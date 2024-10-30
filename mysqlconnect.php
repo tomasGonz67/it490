@@ -273,7 +273,7 @@ function createLeague($sess){
 					$row= $response->fetch_assoc();
 					if ($row){
 						$id=$row['id'];
-						$link = "http://localhost/sample/joinLeague.html?id=" . $userName . "&email=" . urlencode($email); // i totally messed this up but im not changing it. Should still work fine.
+						$link = "http://localhost/sample/joinLeague.html?id=" . $userName . "&email=" . $email; // i totally messed this up but im not changing it. Should still work fine.
 						return $link;
 					}
 				}
