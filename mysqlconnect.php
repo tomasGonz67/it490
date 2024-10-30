@@ -45,7 +45,7 @@ function addFighter($sess, $name){
 											return "IT IS NOT YOUR TURN TO PICK YET!";
 										}
 										else{
-											$query = "UPDATE leagues SET inDraft = 1 WHERE league_name ='$leagueName'";
+											$query = "UPDATE leagues SET inDraft = 1, gameOrder=gameOrder+1 WHERE league_name ='$leagueName'";
 											$response = $mydb->query($query);
 											if ($response){
 												$query = "UPDATE leagues SET fighter1 = '$name' WHERE user_name ='$userName'";
@@ -93,7 +93,7 @@ function joinLeague($userName, $password, $leagueName){
 		$countRow = $response->fetch_row();
 		$count = $countRow[0]; 
 		$count=$count+1;
-		$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName','$leagueName', $count)";
+		$query = "INSERT INTO leagues (user_name, league_name, turnOrder, gameOrder) VALUES ('$userName','$leagueName', $count, 1)";
 		$response = $mydb->query($query);
 		
 		if ($response) {
@@ -122,7 +122,7 @@ function createLeague($sess){
 			$userName = $row['username'];
 			$leagueName=$userName . " League";
 			try{
-			$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName', '$leagueName', 1)";
+			$query = "INSERT INTO leagues (user_name, league_name, turnOrder, gameOrder) VALUES ('$userName', '$leagueName', 1,1)";
 			$result = $mydb->query($query);
 			if ($result){
 				$query = "SELECT id FROM leagues WHERE user_name = '$userName'";
