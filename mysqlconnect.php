@@ -18,6 +18,7 @@ function addFighter($sess, $name){
 	if ($response){
 		$row = $response->fetch_assoc();
 		if ($row){
+			return "debug";
 			$userName = $row['username'];
 			$query = "SELECT league_name FROM leagues WHERE user_name = '$userName'";
 			$response = $mydb->query($query);
