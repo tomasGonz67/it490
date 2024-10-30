@@ -60,15 +60,8 @@
         function handleJoinLeague(response){
             var res = JSON.parse(response);
             document.getElementById("textResponse").innerHTML=res;
-            sendMail();
         }
 
-        function sendMail() {
-            const email = email;
-            const subject = "Someone joined your league!";
-            const body = "Somebody joined your league! Check it out!";
-            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
 
 
         const id = getQueryParam('id');
@@ -84,7 +77,7 @@
                     handleJoinLeague(this.responseText);
                 }
             }
-            xhr.send("type=joinLeague&uname=" + uname+"&pword="+pname+"&id=" + id);
+            xhr.send("type=joinLeague&uname=" + uname+"&pword="+pname+"&id=" + id +"&email=" + email);
         }
         console.log("League ID:", id);
     </script>
