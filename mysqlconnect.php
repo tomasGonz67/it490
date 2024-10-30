@@ -204,16 +204,7 @@ function addFighter($sess, $name){
 function joinLeague($userName, $password, $leagueName, $email){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-	$to = $email;
-	$subject = "Someone Joined your League!";
-	$message = "<html><body>";
-	$message = "<h1>Hello!</h1><p>Check out your league! someone joined!.</p>";
-	$message .= "</body></html>";
-	if (mail($to, $subject, $message)) {
-		echo "Email sent successfully!";
-	} else {
-		echo "Failed to send email.";
-	}
+
 
 	$leagueName=$leagueName . " League";
 	$query = "SELECT inDraft FROM leagues WHERE league_name = '$leagueName'";
