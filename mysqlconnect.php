@@ -28,6 +28,38 @@ function addFighter($sess, $name){
 				$row = $response->fetch_assoc();
 				if ($row){
 					$leagueName=$row['league_name'];
+					$query = "SELECT inDraft FROM leagues WHERE user_name = '$userName'";
+					$response = $mydb->query($query);
+					if ($response){
+						$row = $response->fetch_assoc();
+						if ($row){
+							$inDraft=$row['inDraft'];
+							if ($inDraft==null){
+								$query = "SELECT turnOrder FROM leagues WHERE user_name = '$userName'";
+								$response = $mydb->query($query);
+								if ($response){
+									$row = $response->fetch_assoc();
+									if ($row){
+										$turnOrder=$row['turnOrder'];
+										if ($turnOrder!=1){
+											return "IT IS NOT YOUR TURN TO PICK YET!";
+										}
+										else{
+											$query = "UPDATE leagues SET fighter1 = $name WHERE user_name ='$userName'";
+											$response = $mydb->query($query);
+										
+											if ($response){
+												return "fighter added!";
+											}
+											else {
+												return "error";
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
