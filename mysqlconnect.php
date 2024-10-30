@@ -372,7 +372,7 @@ function register($username, $password, $email){
 	}
 
 	try {
-		$query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', $email)";
+		$query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
 		
 		$response = $mydb->query($query);
 		
