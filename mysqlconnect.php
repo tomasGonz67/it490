@@ -128,7 +128,7 @@ function addFighter($sess, $name){
 												if($response){
 													$row = $response->fetch_assoc();
 													$totalCount = $row['total_count'];
-													if ($totalCount==1){
+													if ($gameOrder==1){
 														$query = "UPDATE leagues SET inDraft = 3 WHERE league_name ='$leagueName'";
 														$response = $mydb->query($query);
 													}
