@@ -201,7 +201,7 @@ function addFighter($sess, $name){
 	}
 }
 
-function joinLeague($userName, $password, $leagueName, $email){
+function joinLeague($userName, $password, $leagueName){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 

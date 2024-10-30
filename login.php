@@ -46,7 +46,6 @@ switch ($request["type"])
 			'username' => $request['uname'],
 			'password' => $request['pword'],
 			'id'=> $request['id'],
-			'email' => $request['email'],
 			'type' =>'joinLeague'
 		];
 		$response = $client->send_request($request);
