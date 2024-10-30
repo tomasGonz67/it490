@@ -254,9 +254,9 @@ function createLeague($sess){
 			$email=$row['email'];
 			$subject = "league creation"; 
 			$message = "Congrats on starting your league!"; 
-			$headers = "From: froggychop100@aol.com";
+			$headers = "From: mmaFantast@wow.com";
 
-			if (mail("froggychop100@aol.com", $subject, $message, $headers)) {
+			if (mail($email, $subject, $message, $headers)) {
     			echo "Email sent successfully!";
 			} else {
     			echo "Failed to send email.";
