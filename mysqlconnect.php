@@ -28,6 +28,17 @@ function addFighter($sess, $name){
 				$row = $response->fetch_assoc();
 				if ($row){
 					$leagueName=$row['league_name'];
+					$query = "SELECT fighter1, fighter2, bench FROM leagues WHERE league_name = '$leagueName'";
+					$response = $mydb->query($query);
+					if ($response) {
+						while ($row = $response->fetch_assoc()) {
+							if ($name==$row['fighter1'] || $name==$row['fighter2'] || $name==$row['benched']){
+								return 'NO DUPE NAMES ALLOWED';
+							}
+						}
+					} else {
+						echo "Error executing query: " . $mydb->error;
+					}
 					$query = "SELECT inDraft FROM leagues WHERE user_name = '$userName'";
 					$response = $mydb->query($query);
 					if ($response){
