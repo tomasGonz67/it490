@@ -18,17 +18,16 @@ function addFighter($sess, $name){
 	if ($response){
 		$row = $response->fetch_assoc();
 		if ($row){
-			return "debug";
 			$userName = $row['username'];
 			$query = "SELECT league_name FROM leagues WHERE user_name = '$userName'";
 			$response = $mydb->query($query);
+			if ($response->num_rows === 0){
+				return 'YOU ARE NOT IN A LEAGUE';
+			}
 			if ($response){
 				$row = $response->fetch_assoc();
 				if ($row){
 					$leagueName=$row['league_name'];
-					if ($leagueName==null){
-						return "YOU ARE NOT IN A LEAGUE!";
-					}
 				}
 			}
 		}
