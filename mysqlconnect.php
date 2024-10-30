@@ -7,7 +7,7 @@ require_once('rabbitMQLib.inc');
 
 
 function addFighter($sess, $name){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$sessionOne = str_replace(['"', "'"], '', $sess);
 
@@ -202,7 +202,7 @@ function addFighter($sess, $name){
 }
 
 function joinLeague($userName, $password, $leagueName){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 
@@ -240,7 +240,7 @@ function joinLeague($userName, $password, $leagueName){
 
 
 function createLeague($sess){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$sessionOne = str_replace(['"', "'"], '', $sess);
 
@@ -255,8 +255,8 @@ function createLeague($sess){
 			$subject = "league creation"; 
 			$message = "Congrats on starting your league!"; 
 			$headers = "From: mmaFantast@wow.com";
-			 mail($email, $subject, $message,$headers);
-			if (mail("froggychop100@aol.com", $subject, $message)) {
+
+			if (mail($email, $subject, $message, $headers)) {
     			echo "Email sent successfully!";
 			} else {
     			echo "Failed to send email.";
@@ -305,7 +305,7 @@ function createLeague($sess){
 
 
 function getMessage($name, $message){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	try{
 		$query = "INSERT INTO userMessages (name, message) VALUES ('$name','$message')";
@@ -321,7 +321,7 @@ function getMessage($name, $message){
 }
 
 function getFighters(){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
@@ -385,7 +385,7 @@ function getFighters(){
 }
 
 function register($username, $password, $email){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
@@ -413,7 +413,7 @@ function register($username, $password, $email){
 }
 
 function logout($sess){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$sessionOne = str_replace(['"', "'"], '', $sess);
 
@@ -431,7 +431,7 @@ function logout($sess){
 }
 
 function setHash($username, $hash){
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	$query = "UPDATE users SET session_key = '$hash' WHERE username = '$username'";
 	$response = $mydb->query($query);
@@ -446,7 +446,7 @@ function setHash($username, $hash){
 
 function checkLogin($username, $password, $hash){
 
-	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$mydb = new mysqli('172.24.37.96','testUser','12345','testdb');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 if ($mydb->errno != 0)
