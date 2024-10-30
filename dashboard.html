@@ -45,13 +45,34 @@
             id="message" name="message" placeholder="Type your message" required></textarea><button
             onclick="submit()">Send</button></div>
     <div id="messages-container"></div>
-
+    <button onclick="createLeague()">CREATE LEAGUE</button>
     <button onclick="logout()">Logout</button>
     <div id="textResponse"></div>
 
 </body>
 
 <script>
+    function handleCreateLeague(response) {
+        var res = JSON.parse(response);
+        console.log(res);
+    }
+
+    function createLeague(){
+        const sess = localStorage.getItem('session_key');
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                handleCreateLeague(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send("type=createLeague&sess=" + sess);
+    }
+
     function HandleSubmit(response) {
         var res = JSON.parse(response);
         document.getElementById("messages-container").innerHTML = res;
@@ -153,7 +174,6 @@
 
     function logout() {
         const sess = localStorage.getItem('session_key');
-        console.log(sess);
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "login.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

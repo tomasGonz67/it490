@@ -6,6 +6,30 @@ require_once('rabbitMQLib.inc');
 //172.24.37.96
 
 
+function createLeague($sess){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$sessionOne = str_replace(['"', "'"], '', $sess);
+
+	$session = preg_replace('/\s+/', '', $sessionOne);
+
+	$query = "SELECT username FROM users WHERE session_key = '$sess'";
+	$response = $mydb->query($query);
+	$leagueName=($response . " League");
+	$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$response', '$leagueName')";
+		
+	$result = $mydb->query($query);
+
+
+	if ($result){
+		return "link";
+	}
+	else {
+		return "error";
+	}
+}
+
+
 function getMessage($name, $message){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
