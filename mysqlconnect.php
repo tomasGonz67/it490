@@ -13,14 +13,15 @@ function createLeague($sess){
 
 	$session = preg_replace('/\s+/', '', $sessionOne);
 
-	$query = "SELECT username FROM users";
+	$query = "SELECT username FROM users WHERE session_key = '$session'";
 	$response = $mydb->query($query);
 	if ($response) {
 		$row = $response->fetch_assoc();
 	
 		if ($row) {
 			$userName = $row['username'];
-			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', 'bark')";
+			$leagueName=$userName . " League";
+			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
 			$result = $mydb->query($query);
 			return "link";
 		}
