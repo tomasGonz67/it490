@@ -105,23 +105,13 @@
         });
         newFighters.sort((a, b) => b.fighterPrediction - a.fighterPrediction);
 
-        newFighters.map((fighter, index) => {
-            const predictionElement = document.createElement('div');
-
-            predictionElement.innerHTML = ` <h3>$ {
-        fighter.name
-        }
-
-        Ranking:$ {
-        index + 1
-        }
-
-    </h3>
-    <h3>Prediction Score: $ {
-        fighter.fighterPrediction
-        }
-
-    </h3> `;
+        newFighters.map((fighter,index)=>{
+        const predictionElement = document.createElement('div');
+        predictionElement.innerHTML = `
+        <h3>${fighter.name} Ranking:${index+1}</h3>
+        <h3>Prediction Score: ${fighter.fighterPrediction}</h3>
+    `;
+    fighters.appendChild(predictionElement);
             fighters.appendChild(predictionElement);
         });
     }
