@@ -64,8 +64,8 @@
 
 <script>
 
-    function addFighter(){
-        console.log("yay");
+    function addFighter(name){
+        console.log(name);
     }
 
 function handleShowFighterNames(response) {
@@ -76,7 +76,7 @@ function handleShowFighterNames(response) {
         const fighterElement = document.createElement('div');
         fighterElement.innerHTML = `
         <h3>${fighter.name}</h3>
-        <button onclick="addFighter()">ADD FIGHTER</button>
+        <button onclick="addFighter({fighter.name})">ADD FIGHTER</button>
     `;
     fighters.appendChild(fighterElement);
             
