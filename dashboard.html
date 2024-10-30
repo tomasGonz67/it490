@@ -47,14 +47,15 @@
     <div id="messages-container"></div>
     <button onclick="createLeague()">CREATE LEAGUE</button>
     <button onclick="logout()">Logout</button>
-    <a id="textResponse"></a>
+    <a id="textResponse" target="_blank"></a>
 
 </body>
 
 <script>
     function handleCreateLeague(response) {
         var res = JSON.parse(response);
-        document.getElementById("textResponse").innerHTML=res;
+        document.getElementById("textResponse").href = res;
+        document.getElementById("textResponse").innerHTML = "Open Link";
     }
 
     function createLeague(){
