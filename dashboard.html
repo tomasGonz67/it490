@@ -124,26 +124,22 @@ function showFighterNames() {
         const apiKey='3cbdccaf8833fab9319cdca7439f371a-us14';
         const audienceId='61cda848da';
         const dataCenter = 'us14';
-        const url = `https://${dataCenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+        const url = 'http://localhost:3000/subscribe';
 
         fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `apikey ${apiKey}`
-        },
-        body: JSON.stringify({
-            email_address: email,
-            status: 'subscribed' // 'subscribed' to add directly to the list
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('yay');
-            return response.json();
-        } else {
-            throw new Error('Network response was not ok');
-        }})
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
 
         const sess = localStorage.getItem('session_key');
         var xhr = new XMLHttpRequest();
