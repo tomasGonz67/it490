@@ -95,7 +95,7 @@ function addFighter($sess, $name){
 														$response = $mydb->query($query);
 													}
 													else{
-														$query = "UPDATE leagues SET gameOrder = gameOrder+1, WHERE league_name ='$leagueName'";
+														$query = "UPDATE leagues SET gameOrder = gameOrder+1 WHERE league_name ='$leagueName'";
 														$response = $mydb->query($query);
 													}
 												}
@@ -129,11 +129,11 @@ function addFighter($sess, $name){
 													$row = $response->fetch_assoc();
 													$totalCount = $row['total_count'];
 													if ($totalCount==1){
-														$query = "UPDATE leagues SET inDraft = 3, WHERE league_name ='$leagueName'";
+														$query = "UPDATE leagues SET inDraft = 3 WHERE league_name ='$leagueName'";
 														$response = $mydb->query($query);
 													}
 													else{
-														$query = "UPDATE leagues SET gameOrder = gameOrder-1, WHERE league_name ='$leagueName'";
+														$query = "UPDATE leagues SET gameOrder = gameOrder-1 WHERE league_name ='$leagueName'";
 														$response = $mydb->query($query);
 													}
 												}
@@ -169,7 +169,7 @@ function addFighter($sess, $name){
 														return 'DRAFTING DONE';
 													}
 													else{
-														$query = "UPDATE leagues SET gameOrder = gameOrder+1, WHERE league_name ='$leagueName'";
+														$query = "UPDATE leagues SET gameOrder = gameOrder+1 WHERE league_name ='$leagueName'";
 														$response = $mydb->query($query);
 													}
 												}
