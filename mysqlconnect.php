@@ -251,19 +251,17 @@ function createLeague($sess){
 	if ($response) {
 		$row = $response->fetch_assoc();
 		if ($row){
-			$to = $email; // Ensure $email contains the recipient's address
-$subject = "Someone Joined your League!";
-$message = "<p>Hello! Congrats on creating your league!</p>"; // Initialize the message
-$headers = "From: froggychop100@aol.com\r\n"; // Initialize headers
-$headers .= "MIME-Version: 1.0\r\n"; // Add MIME-Version header
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n"; // Set content type to HTML
+			$email=$row['email'];
+			$subject = "Test Email"; // Subject of the email
+			$message = "This is a test email."; // Body of the email
+			$headers = "From: your-email@example.com"; // Replace with a valid sender email address
 
-// Send the email
-if (mail($to, $subject, $message, $headers)) {
-    echo "Email sent successfully!";
-} else {
-    echo "Failed to send email.";
-}
+			// Send the email
+			if (mail($email, $subject, $message, $headers)) {
+    			echo "Email sent successfully!";
+			} else {
+    			echo "Failed to send email.";
+			}
 		}
 	}
 
