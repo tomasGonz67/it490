@@ -25,7 +25,16 @@ function createLeague($sess){
 			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
 			$result = $mydb->query($query);
 			if ($result){
-				return "link";
+				$query = "SELECT id FROM leagues WHERE user_name = '$userName'";
+				$response = $mydb->query($query);
+				if ($response){
+					$row= $response->fetch_assoc();
+					if ($row){
+						$id=$row['id'];
+						$link = "http://localhost/sample/joinLeague.html?id=" . $id;
+						return $link;
+					}
+				}
 			}
 			else{
 				throw new Exception("Database error: " . $mydb->error);
