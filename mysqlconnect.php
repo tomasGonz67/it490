@@ -252,6 +252,7 @@ function createLeague($sess){
 		$row = $response->fetch_assoc();
 		if ($row){
 			$email=$row['email'];
+			echo $email;
 			$subject = "league creation"; 
 			$message = "Congrats on starting your league!"; 
 			$headers = "From: mmaFantast@wow.com";
