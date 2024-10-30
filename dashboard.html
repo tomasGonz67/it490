@@ -207,5 +207,8 @@
         localStorage.removeItem('session_key');
         var res = JSON.parse(response);
         document.getElementById("textResponse").innerHTML = res;
+        if (res=="loggedOut"){
+            window.location.href = "index.html";
+        }
     }
 </script>
