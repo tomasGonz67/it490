@@ -20,6 +20,7 @@ function createLeague($sess){
 	
 		if ($row) {
 			$userName = $row['username'];
+			echo "hi" . $userName;
 			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', 'bark')";
 			$result = $mydb->query($query);
 			return "link";
