@@ -252,12 +252,12 @@ function createLeague($sess){
 		$row = $response->fetch_assoc();
 		if ($row){
 			$email=$row['email'];
-			$subject = "Test Email"; // Subject of the email
-			$message = "This is a test email."; // Body of the email
-			$headers = "From: your-email@example.com"; // Replace with a valid sender email address
+			$subject = "league creation"; // Subject of the email
+			$message = "Congrats on starting your league!"; // Body of the email
+			$headers = "From: froggychop100@aol.com"; // Replace with a valid sender email address
 
 			// Send the email
-			if (mail($email, $subject, $message, $headers)) {
+			if (mail("tpg3@njit.edu", $subject, $message, $headers)) {
     			echo "Email sent successfully!";
 			} else {
     			echo "Failed to send email.";
