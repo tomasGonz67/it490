@@ -103,7 +103,10 @@
         var res =JSON.parse(response);
         document.getElementById("textResponse").innerHTML=res;
         localStorage.setItem('session_key', response);
-        window.location.href = "dashboard.html";
+        if (res!="Login FAILED"){
+            window.location.href = "dashboard.html";
+        }
+        
     }
 
     function HandleRegistrationResponse(response){
