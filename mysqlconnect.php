@@ -26,13 +26,12 @@ function createLeague($sess){
 			$result = $mydb->query($query);
 			if ($result){
 				return "link";
-			}}
-			else{
-                throw new Exception("Insert error: " . $mydb->error);
-            }catch (Exception $e) {
-				echo "Error: " . $e->getMessage();
-				return "Error: " . $e->getMessage();
 			}
+			else{
+				throw new Exception("Database error: " . $mydb->error);
+			}}catch (Exception $e) {
+				return "Error: " . $e->getMessage();
+			}	
 			
 		}
 
