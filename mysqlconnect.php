@@ -12,8 +12,10 @@ function joinLeague($userName, $password, $leagueName){
 	try{
 		$query = "SELECT COUNT(*) FROM leagues WHERE league_name = '$leagueName'";
 		$response = $mydb->query($query);
-
-		$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName','$leagueName', ($response+1))";
+		$countRow = $response->fetch_row();
+		$count = $countRow[0]; 
+		$count=$count+1;
+		$query = "INSERT INTO leagues (user_name, league_name, turnOrder) VALUES ('$userName','$leagueName', $count)";
 		$response = $mydb->query($query);
 		
 		if ($response) {
