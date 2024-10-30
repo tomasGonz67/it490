@@ -15,7 +15,6 @@ function createLeague($sess){
 
 	$query = "SELECT username FROM users WHERE session_key = '$sess'";
 	$response = $mydb->query($query);
-	echo($response);
 	$row = $response->fetch_assoc(); 
 	$userName=$row['username'];
 	echo $userName . "asda";
