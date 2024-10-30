@@ -252,18 +252,19 @@ function createLeague($sess){
 		$row = $response->fetch_assoc();
 		if ($row){
 			$email=$row['email'];
+			$to = $mail;
+			$subject = "Someone Joined your League!";
+			$message .= "<p>Hello Congrats on creating your league!</p>";
+			$headers .= "From: froggychop100@aol.com" . "\r\n";
+		
+		if (mail($to, $subject, $message, $headers)) {
+			echo "Email sent successfully!";
+		} else {
+			echo "Failed to send email.";
+		}
 		}
 	}
-	$to = $mail;
-	$subject = "Someone Joined your League!";
-	$message .= "<p>Hello Congrats on creating your league!</p>";
-	$headers .= "From: froggychop100@aol.com" . "\r\n";
 
-if (mail($to, $subject, $message, $headers)) {
-    echo "Email sent successfully!";
-} else {
-    echo "Failed to send email.";
-}
 
 
 	$query = "SELECT username FROM users WHERE session_key = '$session'";
