@@ -66,7 +66,7 @@
 
 function HandleAddedFighter(response) {
         var res = JSON.parse(response);
-        document.getElementById("fightResponse").href = res;
+        document.getElementById("fightResponse").innerHTML = res;
     }
 
     function addFighter(name){
