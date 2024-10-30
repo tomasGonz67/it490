@@ -255,16 +255,10 @@ function createLeague($sess){
 		}
 	}
 	$to = $mail;
-$subject = "Someone Joined your League!";
-$message = "<html><body>";
-$message .= "<h1>Hello!</h1>";
-$message .= "<p>Check out your league! Someone joined!</p>";
-$message .= "<p>Join link: <a href='$link'>Join League</a></p>"; 
-$message .= "</body></html>";
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$subject = "Someone Joined your League!";
+	$message .= "<p>Hello Congrats on creating your league!</p>";
 
-if (mail($to, $subject, $message, $headers)) {
+if (mail($to, $subject, $message)) {
     echo "Email sent successfully!";
 } else {
     echo "Failed to send email.";
