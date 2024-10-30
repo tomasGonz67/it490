@@ -209,6 +209,11 @@ function joinLeague($userName, $password, $leagueName, $email){
 	$message = "<html><body>";
 	$message = "<h1>Hello!</h1><p>Check out your league! someone joined!.</p>";
 	$message .= "</body></html>";
+	if (mail($to, $subject, $message)) {
+		echo "Email sent successfully!";
+	} else {
+		echo "Failed to send email.";
+	}
 
 	$leagueName=$leagueName . " League";
 	$query = "SELECT inDraft FROM leagues WHERE league_name = '$leagueName'";
