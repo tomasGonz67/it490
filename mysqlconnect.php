@@ -18,15 +18,24 @@ function createLeague($sess){
 	if ($response) {
 		$row = $response->fetch_assoc();
 	
-		try{($row) 
+		if ($row) {
 			$userName = $row['username'];
 			$leagueName=$userName . " League";
+			try{
 			$query = "INSERT INTO leagues (user_name, league_name) VALUES ('$userName', '$leagueName')";
 			$result = $mydb->query($query);
-			return "link";
-		}catch{
-			return "Error: " . $mydb->error;
+			if ($result){
+				return "link";
+			}}
+			else{
+                throw new Exception("Insert error: " . $mydb->error);
+            }catch (Exception $e) {
+				echo "Error: " . $e->getMessage();
+				return "Error: " . $e->getMessage();
+			}
+			
 		}
+
 	} 
 	else {
 		echo "Error: " . $mydb->error;
