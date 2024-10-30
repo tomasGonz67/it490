@@ -45,7 +45,7 @@ function addFighter($sess, $name){
 											return "IT IS NOT YOUR TURN TO PICK YET!";
 										}
 										else{
-											$query = "UPDATE leagues SET fighter1 = $name WHERE user_name ='$userName'";
+											$query = "UPDATE leagues SET fighter1 = '$name' WHERE user_name ='$userName'";
 											$response = $mydb->query($query);
 										
 											if ($response){
