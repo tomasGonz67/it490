@@ -5,6 +5,35 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //172.24.37.96
 
+
+function addFighter($sess, $name){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$sessionOne = str_replace(['"', "'"], '', $sess);
+
+	$session = preg_replace('/\s+/', '', $sessionOne);
+
+	$query = "SELECT username FROM users WHERE session_key = '$session'";
+	$response = $mydb->query($query);
+	if ($response){
+		$row = $response->fetch_assoc();
+		if ($row){
+			$userName = $row['username'];
+			$query = "SELECT league_name FROM leagues WHERE user_name = '$userName'";
+			$response = $mydb->query($query);
+			if ($response){
+				$row = $response->fetch_assoc();
+				if ($row){
+					$leagueName=$row['league_name'];
+					if ($leagueName==null){
+						return "YOU ARE NOT IN A LEAGUE!";
+					}
+				}
+			}
+		}
+	}
+}
+
 function joinLeague($userName, $password, $leagueName){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");

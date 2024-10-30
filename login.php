@@ -29,6 +29,17 @@ $response = "unsupported request type, politely FUCK OFF";
 switch ($request["type"])
 {
 
+	case "addFighter":
+		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+		$request = [
+			'type' =>'addFighter',
+			'session'=>$request['sess'],
+			'name'=>$request['name']
+		];
+		$response = $client->send_request($request);
+		echo json_encode($response);
+		break;
+
 	case "joinLeague":
 		$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 		$request = [

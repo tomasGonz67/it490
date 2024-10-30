@@ -59,13 +59,28 @@
     <div id="fighter-names"><button onclick="showFighterNames()">Show Fighter Names</button>
         
     <div id="fighter-namesInfo"></div>
-
+    <div id="fightResponse"></div>
 </body>
 
 <script>
 
+function HandleAddedFighter(response) {
+        var res = JSON.parse(response);
+        document.getElementById("fightResponse").href = res;
+    }
+
     function addFighter(name){
-        console.log(name);
+        const sess = localStorage.getItem('session_key');
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                HandleAddedFighter(this.responseText);
+            }
+        }
+        xhr.send("type=addFighter&sess=" + sess +"&name="+name);
     }
 
 function handleShowFighterNames(response) {
@@ -230,8 +245,6 @@ function showFighterNames() {
                 HandleLogoutResponse(this.responseText);
             }
         }
-
-            ;
         xhr.send("type=logout&sess=" + sess);
     }
 

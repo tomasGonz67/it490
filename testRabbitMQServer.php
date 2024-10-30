@@ -21,6 +21,9 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "addFighter":
+      require_once 'mysqlconnect.php';
+      return addFighter($request['session'], $request['name']);
     case "joinLeague":
       require_once 'mysqlconnect.php';
       return joinLeague($request['username'], $request['password'], $request['id']);
