@@ -27,6 +27,13 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+
+        #fighter-names {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -48,10 +55,49 @@
     <button onclick="createLeague()">CREATE LEAGUE</button>
     <button onclick="logout()">Logout</button>
     <a id="textResponse" target="_blank"></a>
+    <h1>Fighter Snake Draft Names</h1>
+    <div id="fighter-names"><button onclick="showFighterNames()">Show Fighter Names</button>
+        
+    <div id="fighter-namesInfo"></div>
 
 </body>
 
 <script>
+
+    function addFighter(){
+        console.log("yay");
+    }
+
+function handleShowFighterNames(response) {
+        var res = JSON.parse(response);
+        const fighters = document.getElementById('fighter-namesInfo');
+
+        res.map(fighter=>{
+        const fighterElement = document.createElement('div');
+        fighterElement.innerHTML = `
+        <h3>${fighter.name}</h3>
+        <button onclick="addFighter()">ADD FIGHTER</button>
+    `;
+    fighters.appendChild(fighterElement);
+            
+        });
+    }
+
+function showFighterNames() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "login.php?type=getFighters", true);
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                handleShowFighterNames(this.responseText);
+            }
+        }
+
+            ;
+        xhr.send();
+    }
+
+
     function handleCreateLeague(response) {
         var res = JSON.parse(response);
         document.getElementById("textResponse").href = res;
