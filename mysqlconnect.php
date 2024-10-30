@@ -28,7 +28,7 @@ function addFighter($sess, $name){
 				$row = $response->fetch_assoc();
 				if ($row){
 					$leagueName=$row['league_name'];
-					$query = "SELECT fighter1, fighter2, bench FROM leagues WHERE league_name = '$leagueName'";
+					$query = "SELECT fighter1, fighter2, benched FROM leagues WHERE league_name = '$leagueName'";
 					$response = $mydb->query($query);
 					if ($response) {
 						while ($row = $response->fetch_assoc()) {
