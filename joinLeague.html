@@ -60,6 +60,14 @@
         function handleJoinLeague(response){
             var res = JSON.parse(response);
             document.getElementById("textResponse").innerHTML=res;
+            sendMail();
+        }
+
+        function sendMail() {
+            const email = email;
+            const subject = "Someone joined your league!";
+            const body = "Somebody joined your league! Check it out!";
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
 

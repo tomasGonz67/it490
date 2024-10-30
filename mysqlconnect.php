@@ -244,6 +244,15 @@ function createLeague($sess){
 
 	$session = preg_replace('/\s+/', '', $sessionOne);
 
+	$query = "SELECT email FROM users WHERE session_key = '$session'";
+	$response = $mydb->query($query);
+	if ($response) {
+		$row = $response->fetch_assoc();
+		if ($row){
+			$email=$row['email'];
+		}
+	}
+
 	$query = "SELECT username FROM users WHERE session_key = '$session'";
 	$response = $mydb->query($query);
 	if ($response) {
@@ -262,7 +271,7 @@ function createLeague($sess){
 					$row= $response->fetch_assoc();
 					if ($row){
 						$id=$row['id'];
-						$link = "http://localhost/sample/joinLeague.html?id=" . $userName; // i totally messed this up but im not changing it. Should still work fine.
+						$link = "http://localhost/sample/joinLeague.html?id=" . $userName . "&email=" . $email; // i totally messed this up but im not changing it. Should still work fine.
 						return $link;
 					}
 				}
