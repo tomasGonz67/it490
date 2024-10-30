@@ -31,14 +31,15 @@
 </head>
 
 <body>
-
+    <h1>Fighter Stats</h1>
     <div id="fighter-container"><button onclick="showFighters()">Show Fighter Stats</button>
-        <h1>Fighter Stats</h1>
-        <div id="fighter-info"></div>
+        
+    <div id="fighter-info"></div>
     </div>
+    <h1>Fighter predictions</h1>
     <div id="predictions-container"><button onclick="showPredictions()">Show Fighter Predictions</button>
-        <h1>Fighter predictions</h1>
-        <div id="fighter-predictions"></div>
+        
+    <div id="fighter-predictions"></div>
     </div>
     <div id="contact-form"><input type="text" id='name' name="name" placeholder="Your name" required><textarea
             id="message" name="message" placeholder="Type your message" required></textarea><button
@@ -141,6 +142,7 @@
 
     function handleShowFighters(response) {
         var res = JSON.parse(response);
+        console.log(res);
         const fighters = document.getElementById('fighter-info');
 
         res.map(fighter => {
