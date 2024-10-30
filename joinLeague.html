@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .login-container {
             background-color: white;
             padding: 20px;
@@ -40,7 +47,6 @@
             <input type="password" id="password" name="pword" required>
         </div>
         <button onclick="joinLeague()">Login</button>
-        <div class="error-message" id="error-message">Invalid credentials</div>
         <div id="textResponse"></div>
 
     </div>
@@ -53,7 +59,7 @@
 
         function handleJoinLeague(response){
             var res = JSON.parse(response);
-            console.log(res);
+            document.getElementById("textResponse").innerHTML=res;
         }
 
 

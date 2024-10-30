@@ -54,7 +54,7 @@
 <script>
     function handleCreateLeague(response) {
         var res = JSON.parse(response);
-        console.log(res);
+        document.getElementById("textResponse").innerHTML=res;
     }
 
     function createLeague(){
