@@ -201,19 +201,10 @@ function addFighter($sess, $name){
 	}
 }
 
-function joinLeague($userName, $password, $leagueName, $email){
+function joinLeague($userName, $password, $leagueName){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-	$to = $email;
-	$subject = "Someone Joined your League!";
-	$message = "<html><body>";
-	$message = "<h1>Hello!</h1><p>Check out your league! someone joined!.</p>";
-	$message .= "</body></html>";
-	if (mail($to, $subject, $message, $headers)) {
-    echo "Email sent successfully!";
-} else {
-    echo "Failed to send email.";
-}
+
 
 	$leagueName=$leagueName . " League";
 	$query = "SELECT inDraft FROM leagues WHERE league_name = '$leagueName'";
@@ -282,7 +273,7 @@ function createLeague($sess){
 					$row= $response->fetch_assoc();
 					if ($row){
 						$id=$row['id'];
-						$link = "http://localhost/sample/joinLeague.html?id=" . $userName . "&email=" . $email; // i totally messed this up but im not changing it. Should still work fine.
+						$link = "http://localhost/sample/joinLeague.html?id=" . $userName; // i totally messed this up but im not changing it. Should still work fine.
 						return $link;
 					}
 				}
