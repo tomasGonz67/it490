@@ -62,6 +62,125 @@ function addFighter($sess, $name){
 									}
 								}
 							}
+							$query = "SELECT gameOrder FROM leagues WHERE user_name = '$userName'";
+							$response = $mydb->query($query);
+							if ($response){
+								$row = $response->fetch_assoc();
+								if ($row){
+									$gameOrder=$row['gameOrder'];
+								}
+							}
+							if ($inDraft==1){
+								$query = "SELECT turnOrder FROM leagues WHERE user_name = '$userName'";
+								$response = $mydb->query($query);
+								if ($response){
+									$row = $response->fetch_assoc();
+									if ($row){
+										$turnOrder=$row['turnOrder'];
+										if ($turnOrder!=$gameOrder){
+											return "IT IS NOT YOUR TURN TO PICK YET!";
+										}
+										else{
+											$query = "UPDATE leagues SET fighter1 = '$name' WHERE user_name ='$userName'";
+											$response = $mydb->query($query);
+											if ($response){
+												$query = "SELECT COUNT(*) AS total_count FROM leagues WHERE league_name = '$leagueName'";
+												$response = $mydb->query($query);
+												if($response){
+													$row = $response->fetch_assoc();
+													$totalCount = $row['total_count'];
+													if ($totalCount==$gameOrder){
+														$query = "UPDATE leagues SET inDraft = 2, WHERE league_name ='$leagueName'";
+														$response = $mydb->query($query);
+													}
+													else{
+														$query = "UPDATE leagues SET gameOrder = gameOrder+1, WHERE league_name ='$leagueName'";
+														$response = $mydb->query($query);
+													}
+												}
+												return "fighter added!";
+											}
+											else {
+												return "error";
+											}
+										}
+									}
+								}
+							}
+
+							if ($inDraft==2){
+								$query = "SELECT turnOrder FROM leagues WHERE user_name = '$userName'";
+								$response = $mydb->query($query);
+								if ($response){
+									$row = $response->fetch_assoc();
+									if ($row){
+										$turnOrder=$row['turnOrder'];
+										if ($turnOrder!=$gameOrder){
+											return "IT IS NOT YOUR TURN TO PICK YET!";
+										}
+										else{
+											$query = "UPDATE leagues SET fighter2 = '$name' WHERE user_name ='$userName'";
+											$response = $mydb->query($query);
+											if ($response){
+												$query = "SELECT COUNT(*) AS total_count FROM leagues WHERE league_name = '$leagueName'";
+												$response = $mydb->query($query);
+												if($response){
+													$row = $response->fetch_assoc();
+													$totalCount = $row['total_count'];
+													if ($totalCount==1){
+														$query = "UPDATE leagues SET inDraft = 3, WHERE league_name ='$leagueName'";
+														$response = $mydb->query($query);
+													}
+													else{
+														$query = "UPDATE leagues SET gameOrder = gameOrder-1, WHERE league_name ='$leagueName'";
+														$response = $mydb->query($query);
+													}
+												}
+												return "fighter added!";
+											}
+											else {
+												return "error";
+											}
+										}
+									}
+								}
+							}
+							if ($inDraft==3){
+								$query = "SELECT turnOrder FROM leagues WHERE user_name = '$userName'";
+								$response = $mydb->query($query);
+								if ($response){
+									$row = $response->fetch_assoc();
+									if ($row){
+										$turnOrder=$row['turnOrder'];
+										if ($turnOrder!=$gameOrder){
+											return "IT IS NOT YOUR TURN TO PICK YET!";
+										}
+										else{
+											$query = "UPDATE leagues SET fighter1 = '$name' WHERE user_name ='$userName'";
+											$response = $mydb->query($query);
+											if ($response){
+												$query = "SELECT COUNT(*) AS total_count FROM leagues WHERE league_name = '$leagueName'";
+												$response = $mydb->query($query);
+												if($response){
+													$row = $response->fetch_assoc();
+													$totalCount = $row['total_count'];
+													if ($totalCount==$gameOrder){
+														return 'DRAFTING DONE';
+													}
+													else{
+														$query = "UPDATE leagues SET gameOrder = gameOrder+1, WHERE league_name ='$leagueName'";
+														$response = $mydb->query($query);
+													}
+												}
+												return "fighter added!";
+											}
+											else {
+												return "error";
+											}
+										}
+									}
+								}
+							}
 						}
 					}
 				}
