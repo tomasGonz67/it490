@@ -308,7 +308,7 @@ function createLeague($sess){
 
 function getMessage($name, $message){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
-	$client = new rabbitMQClient("testRabbitMQ.ini","DMZ");
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	try{
 		$query = "INSERT INTO userMessages (name, message) VALUES ('$name','$message')";
 		$response = $mydb->query($query);
@@ -352,7 +352,7 @@ function insertFighters($fightersArray){
 
 function getFighters(){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
-	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+	$client = new rabbitMQClient("testRabbitMQ.ini","DMZ");
 	if ($mydb->errno != 0)
 	{
 		echo "failed to connect to database: ". $mydb->error . PHP_EOL;

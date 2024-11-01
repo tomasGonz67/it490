@@ -12,7 +12,7 @@ function getFighters(){
 			$fightersArray=$fightersArray["fighters"];
             $request = [
                 'type' => 'insertFightersDMZ',
-                'fighters' => $fightersArray;
+                'fighters' => $fightersArray
             ];
             return $response = $client->send_request($request);
         }
