@@ -323,6 +323,7 @@ function getMessage($name, $message){
 }
 
 function insertFighters($fightersArray){
+	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$fighters=[];
 	foreach ($fightersArray as $fighter) {
 		$fighter_id = $mydb->real_escape_string($fighter['fighter_id']);
