@@ -24,9 +24,11 @@ function requestProcessor($request)
     case "insertFightersDMZ":
       require_once 'mysqlconnect.php';
       return insertFighters($request['fighters']);
+    /*
     case "getFightersDMZ":
       require_once 'DMZ.php';
       return getFighters();
+    */
     case "addFighter":
       require_once 'mysqlconnect.php';
       return addFighter($request['session'], $request['name']);
