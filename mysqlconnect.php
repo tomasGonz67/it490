@@ -3,7 +3,7 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-// 172.24.37.96
+//172.24.37.96
 
 
 
@@ -374,49 +374,15 @@ function getFighters(){
 		}
 
 		else{
-			/*$request = [
+			$request = [
                 'type' => 'getFightersDMZ'
             ];
-			return $response = $client->send_request($request); */
-			$curl = curl_init();
-			$client = new rabbitMQClient("testRabbitMQ.ini","DMZ");
-			curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	
-			$response = curl_exec($curl);
-			curl_close($curl);
-			$fightersArray = json_decode($response, true);
-			$fightersArray=$fightersArray["fighters"];
-			$fighters=[];
-			foreach ($fightersArray as $fighter) {
-			$fighter_id = $mydb->real_escape_string($fighter['fighter_id']);
-			$name = $mydb->real_escape_string($fighter['name']);
-			$height = $mydb->real_escape_string($fighter['height']);
-			$weight = $mydb->real_escape_string($fighter['weight']);
-			$n_win = $fighter['n_win']; 
-			$n_loss = $fighter['n_loss']; 
-			$n_draw = $fighter['n_draw'];
-	
-			$query = "INSERT INTO fighters (fighter_id, name, height, weight, n_win, n_loss, n_draw) 
-				  VALUES ('$fighter_id', '$name', '$height', '$weight', $n_win, $n_loss, $n_draw)";
-	
-			$result = $mydb->query($query);
-	
-			if (!$result) {
-				echo "Error inserting fighter: " . $mydb->error;
-			}
+			return $response = $client->send_request($request);
 		}
-		$query = "select * from fighters;";
-		$result = $mydb->query($query);
-		while($row = $result->fetch_assoc()) {
-			$fighters[] = $row;
-		}
-			return $fighters;
-			}
 			
-		}
-
 	}
+
+}
 
 function register($username, $password, $email){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
