@@ -18,6 +18,7 @@ function requestProcessor($request) {
 }
 
 function getFightersServerside() {
+	// Sends an API call to get fighters. named differently to avoid the DBMachine accidentally running the DMZMachine's functions
 	$curl = curl_init();
 	$client = new rabbitMQClient("testRabbitMQ.ini","DMZ");
 	curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
