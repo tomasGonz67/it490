@@ -35,7 +35,8 @@ function getFightersServerside() {
 		'fighters' => $fightersArray
 	];
 	// echo $response;
-	return $response = $client->send_request($request);
+	return $response;
+	// return $response = $client->send_request($request);
 }
 
 $server = new rabbitMQServer("testRabbitMQ.ini", "testServertoDMZ");
