@@ -43,7 +43,7 @@ function getFightersServerside() {
 	$fightersArray = $fightersArray["fighters"];
 
 	// deprecated. remove when DMZ confirmed works
-	$request = [
+	$requestBack = [
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
 	];
