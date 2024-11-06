@@ -14,7 +14,8 @@ function requestProcessor($request) {
 			return getFightersServerside();
 	}
 
-	return array("returnCode" => '0', 'message'=>"Server received request and processed");
+	// return array("returnCode" => '0', 'message'=>"Server received request and processed");
+	return;
 }
 
 function getFightersServerside() {

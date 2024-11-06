@@ -64,6 +64,7 @@ function requestProcessor($request)
 }
 
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
+$serverDMZ = new rabbitMQServer("testRabbitMQ.ini","testServertoDMZ");
 
 echo "testRabbitMQServer BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');
