@@ -353,7 +353,7 @@ function insertFighters($fightersArray){
 
 function getFighters(){
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
-	$client = new rabbitMQClient("testRabbitMQ.ini","testServertoDMZ");
+	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
 	{
 		echo "failed to connect to database: ". $mydb->error . PHP_EOL;
@@ -377,7 +377,8 @@ function getFighters(){
 			$request = [
                 'type' => 'getFightersDMZ'
             ];
-			return $response = $client->send_request($request);
+			$DMZclient = new rabbitMQClient("testRabbitMQ.ini","testServertoDMZ");
+			return $response = $DMZclient->send_request($request);
 		}
 			
 	}
