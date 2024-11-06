@@ -13,9 +13,7 @@ function requestProcessor($request) {
 		case "getFightersDMZ":
 			return getFightersServerside();
 	}
-
-	// return array("returnCode" => '0', 'message'=>"Server received request and processed");
-	return;
+	return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
 function getFightersServerside() {
@@ -29,13 +27,13 @@ function getFightersServerside() {
 	echo $response;
 	curl_close($curl);
 	$fightersArray = json_decode($response, true);
-	$fightersArray=$fightersArray["fighters"];
+	// $fightersArray=$fightersArray["fighters"];
 	$request = [
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
 	];
 	// echo $response;
-	return $response;
+	return $fightersArray;
 	// return $response = $client->send_request($request);
 }
 
