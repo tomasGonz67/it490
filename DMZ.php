@@ -33,7 +33,7 @@ function getFightersServerside() {
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
 	];
-	echo $response;
+	// echo $response;
 	return $response = $client->send_request($request);
 }
 

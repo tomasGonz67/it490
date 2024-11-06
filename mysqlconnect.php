@@ -378,9 +378,11 @@ function getFighters(){
                 'type' => 'getFightersDMZ'
             ];
 			$DMZclient = new rabbitMQClient("testRabbitMQ.ini","testServertoDMZ");
-			$response = $DMZclient->send_request($request);
-			echo $response;
-			return $response;
+			$DMZresponse = $DMZclient->send_request($request);
+			echo $DMZresponse;
+			echo "yerr";
+			insertFighters($DMZresponse);
+			return $DMZresponse;
 		}
 			
 	}
