@@ -323,6 +323,8 @@ function getMessage($name, $message){
 }
 
 function insertFighters($fightersArray){
+	echo $fightersArray;
+	echo "Inserting fighterz";
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$fighters=[];
 	foreach ($fightersArray as $fighter) {
@@ -379,9 +381,6 @@ function getFighters(){
             ];
 			$DMZclient = new rabbitMQClient("testRabbitMQ.ini","testServertoDMZ");
 			$DMZresponse = $DMZclient->send_request($request);
-			echo $DMZresponse;
-			echo "yerr";
-			insertFighters($DMZresponse);
 			return $DMZresponse;
 		}
 			
