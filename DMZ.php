@@ -27,7 +27,7 @@ function getFightersServerside() {
 	echo $response;
 	curl_close($curl);
 	$fightersArray = json_decode($response, true);
-	// $fightersArray=$fightersArray["fighters"];
+	$fightersArray=$fightersArray["fighters"];
 	$request = [
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
