@@ -26,6 +26,7 @@ function getFightersServerside() {
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 	$response = curl_exec($curl);
+	echo $response;
 	curl_close($curl);
 	$fightersArray = json_decode($response, true);
 	$fightersArray=$fightersArray["fighters"];
