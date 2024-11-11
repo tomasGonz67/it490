@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "baf0b1b659e688a64051c5ee9742a77e",
+    "content-hash": "0bad7c4aa3011639e74828533b68e169",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -86,12 +86,64 @@
                 }
             ],
             "time": "2024-10-09T10:07:50+00:00"
+        },
+        {
+            "name": "textmagic/sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/textmagic/textmagic-rest-php.git",
+                "reference": "b81cd04df7ab6fd21f0ddd75bf987cf3f65fe9c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/textmagic/textmagic-rest-php/zipball/b81cd04df7ab6fd21f0ddd75bf987cf3f65fe9c6",
+                "reference": "b81cd04df7ab6fd21f0ddd75bf987cf3f65fe9c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Services/TextmagicRestClient.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis",
+                    "email": "denis@textmagic.com"
+                }
+            ],
+            "description": "A PHP wrapper for Textmagic API",
+            "homepage": "http://github.com/textmagic/textmagic-rest-php",
+            "keywords": [
+                "api",
+                "sms",
+                "textmagic"
+            ],
+            "support": {
+                "issues": "https://github.com/textmagic/textmagic-rest-php/issues",
+                "source": "https://github.com/textmagic/textmagic-rest-php/tree/master"
+            },
+            "time": "2015-10-26T14:22:41+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "textmagic/sdk": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
