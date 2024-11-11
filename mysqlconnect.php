@@ -5,6 +5,12 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //172.24.37.96
 
+/*
+ * Petition to rename this:
+ * BackendFunctions.php
+ * DBFunctions.php
+ * Anything else
+*/
 
 
 function addFighter($sess, $name){
@@ -380,10 +386,10 @@ function getFighters(){
                 'type' => 'getFightersDMZ'
             ];
 			$DMZclient = new rabbitMQClient("testRabbitMQ.ini","testServertoDMZ");
-			echo "before";
+			echo "before send/response";
 			$DMZresponse = $DMZclient->send_request($request);
 			// echo implode(',', $DMZresponse);
-			echo "after";
+			echo "after send/response";
 			return $DMZresponse;
 		}
 			

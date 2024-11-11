@@ -43,6 +43,7 @@ function requestProcessor($request)
       return getMessage($request['name'], $request['message']);
     case "getFighters":
       require_once 'mysqlconnect.php';
+      // NOTE: CONTACTS DMZ.
       return getFighters();
     case "logout":
       require_once 'mysqlconnect.php';

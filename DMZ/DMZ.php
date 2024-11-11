@@ -1,6 +1,9 @@
 #!/usr/bin/php
 <?php
+require_once('path.inc');
+require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
+require_once('DMZFunctions.php');
 
 function requestProcessor($request) {
 	echo "received request".PHP_EOL;
@@ -11,20 +14,25 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 		case "getFightersDMZ":
-			return getFightersServerside();
+			$response_msg = getFightersServerside();
+			break;
+		default:
+			$response_msg = array("returnCode" => '0', 'message'=>"Server received request and processed");
+			break;
 	}
-	return array("returnCode" => '0', 'message'=>"Server received request and processed");
+	return $response_msg;
+	// return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
 function getFightersServerside() {
 	// Sends an API call to get fighters. named differently to avoid the DBMachine accidentally running the DMZMachine's functions
 	$curl = curl_init();
-	$client = new rabbitMQClient("testRabbitMQ.ini","DMZtotestServer");
 	curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 	$response = curl_exec($curl);
-	echo $response;
+	// echo $response;
+
 	curl_close($curl);
 	$fightersArray = json_decode($response, true);
 	$fightersArray=$fightersArray["fighters"];
@@ -32,12 +40,10 @@ function getFightersServerside() {
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
 	];
-	// echo $response;
 	return $fightersArray;
-	// return $response = $client->send_request($request);
 }
 
-$server = new rabbitMQServer("testRabbitMQ.ini", "testServertoDMZ");
+$server = new rabbitMQServer("rabbitConfig.ini", "DMZ");
 
 echo "DMZ SERVER BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');
