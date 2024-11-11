@@ -7,20 +7,25 @@ require_once('DMZFunctions.php');
 
 function requestProcessor($request) {
 	echo "received request".PHP_EOL;
+
 	var_dump($request);
+
 	if(!isset($request['type'])) {
-	  return "ERROR: unsupported message type";
+	  return array('message' => "ERROR: unsupported message type");
 	}
 
 	switch ($request['type']) {
+		// Get Fighters from the API
 		case "getFightersDMZ":
 			$response_msg = getFightersServerside();
 			break;
+		// Default case (type was given, but we don't handle it)
 		default:
-			$response_msg = array("returnCode" => '0', 'message'=>"Server received request and processed");
+			$response_msg = array("returnCode" => '0', 'message' => "Server received request and processed");
 			break;
 	}
 	return $response_msg;
+	exit();
 	// return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
@@ -35,11 +40,14 @@ function getFightersServerside() {
 
 	curl_close($curl);
 	$fightersArray = json_decode($response, true);
-	$fightersArray=$fightersArray["fighters"];
+	$fightersArray = $fightersArray["fighters"];
+
+	// deprecated. remove when DMZ confirmed works
 	$request = [
 		'type' => 'insertFightersDMZ',
 		'fighters' => $fightersArray
 	];
+
 	return $fightersArray;
 }
 

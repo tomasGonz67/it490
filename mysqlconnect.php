@@ -359,7 +359,7 @@ function insertFighters($fightersArray){
 	return $fighters;
 }
 
-function getFighters(){
+function getFighters() {
 	$mydb = new mysqli('localhost','testUser','12345','testdb');
 	$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 	if ($mydb->errno != 0)
