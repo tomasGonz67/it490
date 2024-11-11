@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // require('PHPMailer/PHPMailerAutoload.php');
+// https://github.com/PHPMailer/PHPMailer
 require('vendor/autoload.php');
 
 $to      = 'lad5@njit.edu';
