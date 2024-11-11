@@ -5,4 +5,7 @@ then
     exit
 fi
 rm /var/www/sample/*
-cp ./* /var/www/sample/
+cp ../* /var/www/sample/
+
+apt install -y composer
+# composer require phpmailer/phpmailer
