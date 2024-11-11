@@ -7,6 +7,7 @@
 
 // MAKE SURE YOU'RE IN THE BACKEND FOLDER BEFORE RUNNING THIS
 // composer require textmagic/sdk dev-master
+require('vendor/autoload.php');
 
 $client = new TextmagicRestClient('<USERNAME>', '<APIV2_KEY>');
 $result = ' ';
