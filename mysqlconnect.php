@@ -352,6 +352,15 @@ function getFighters(){
 		}
 
 		else{
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_URL, "https://ufc-api-theta.vercel.app/mma-api/fighters");
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$fightersArray = json_decode($response, true);
+			$fightersArray = $fightersArray["fighters"];
 			$fighters=[];
 			foreach ($fightersArray as $fighter) {
 				$fighter_id = $mydb->real_escape_string($fighter['fighter_id']);
