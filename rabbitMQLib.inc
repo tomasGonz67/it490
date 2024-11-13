@@ -171,6 +171,9 @@ class rabbitMQClient
 	function process_response($response)
 	{
 		$uid = $response->getCorrelationId();
+		if ($this->conn_queue) {
+            $this->conn_queue->ack($response->getDeliveryTag()); // Acknowledge the message
+        } 
 		if (!isset($this->response_queue[$uid]))
 		{
 			echo  "unknown uid\n";
